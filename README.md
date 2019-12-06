@@ -67,16 +67,23 @@ This concept is based on the work of the Consumer Data Right published by Data61
 <br /><br />
 ______________________________________________________________________________
 
-# License
+# Statement of Contribution
 
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+These National API Design Standards are collaboration between the Commonwealth of Australia, State of Western Australia, the State of South Australia, the State of Queensland, the State of Tasmania, the State of New South Wales, the Northern Territory, the Australian Capital Territory and the State of Victoria. All these Australian government jurisdictions have contributed to, and have approved, the use of these National API Design Standards. 
 
-<br /><br />
+The contributing parties are collectively known as the National API Design Standards working Group. Upon publication and circulation, this group will be known as the National Working Group for the purposes of iteration, adaptation and improvement of the National API Design Standards. 
 
-______________________________________________________________________________
+ 
 
+# License  
 
-&copy; State Government of Victoria
+[Creative Commons BY SA 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/legalcode)
 
-This information is the work of a collaboration between the Commonwealth of Australia, State Government of New South Wales, State Government of Queensland, State Government of Western Australia, State Government of Tasmania, State Government of South Australia, Northern Territory Government, Australian Capital Territory Government and the State Government of Victoria.
+&copy; The State of Victoria 2019 
+
+With the exception of the Commonwealth Coat of Arms, the Coat of Arms of the State of Victoria and the logo of the Department of Prime Minister & Cabinet, and where  otherwise noted, this product is provided under a Creative Commons Attribution-Share Alike 4.0 International (CC BY-SA 4.0) license. 
+
+There is no guarantee that the information in this document is totally accurate or complete. Therefore, you should not solely rely on this information when making a commercial decision. 
+
+The National Working Group is committed to providing web accessible content wherever possible. 
 
