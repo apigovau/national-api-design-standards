@@ -1,0 +1,685 @@
+openapi: 3.0.0
+info:
+  description: >
+    This is an **example** API to demonstrate features of The API Factory.
+
+
+    # Introduction
+
+    This specification is intended to to be a good starting point for describing
+
+    how users can interact with the various retrieval methods of your API. As
+
+    part of Team API design guidelines we recommend informing the user about
+
+    various aspects of your api such as:
+
+
+
+    # Getting Started
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+
+    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+      ## **Using The API**
+      This API provides data in the following formats:
+        - API format XXXX                 # Describe your exposed API format
+        - API format XXXX                 # Describe your exposed API format
+
+      The following sections describe how to use these formats:
+
+
+      ## API Endpoint `/xxxx`:
+      The `/xxxx` Endpoint is available at the `/xxxx` endpoint. This endpoint can
+      provide information in the following formats by using the `outputformat`
+      query parameter.
+
+       - application/json               # Replace with your output format
+       - application/atom+xml           # Replace with your output format
+
+
+     ## Extra Developer Documentation:
+      If you have more developer documentation or tutorials specific to helping
+      developers interact with this endpoint.
+      **url:** 'https://example.com/documentation/link'
+
+    # Uptime & Planned Outages
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+
+    consequat.
+
+
+
+    # Authentication & Rate Limits
+
+    No authentication is currently required to use the retrieval methods
+
+    published in this API. It is at the discretion of the XXXXX team whether the
+
+    authentication and rate limiting changes in the future.
+
+
+    There is also no current rate limits being enforced, however it is advised
+
+    that users keep their queries to ~2-3 calls per second to avoid overloading
+
+    the service.
+
+
+
+    # Terms of Use, Copyright and Attribution
+
+    Please ensure you comply with the following policies prior to using any data
+
+    within this API.
+
+
+    - [Terms of Use](https://www.XXXX.vic.gov.au/terms-use)
+
+    - [Privacy Policy](https://www.XXXX.vic.gov.au/privacy)
+
+    - [Copyright and Attribution](https://www.XXXX.vic.gov.au/copyright-and-attribution)
+
+    - [Department/Information Website](http://XXXX.vic.gov.au/digital)
+
+
+    To the maximum extent possible, the datasets provided via this site and their contents, to the extent they are protected by copyright, are provided under a [XXXX What type of Licence Agreement XXXX
+
+    eg: Creative Commons Attribution Version 4.0 (international licence)](https://creativecommons.org/licenses/by/4.0/).
+
+
+    # Contact Us
+
+    If you have a suggestion please contact us at .....
+  contact:
+    email: youremail@dpc.vic.gov.au
+    url: https://example.com/contact
+  version: 1.4.0
+  title: Example.com
+tags:
+  - name: Echo
+    description: Example echo operations
+  - name: User
+    description: Example operations about user
+paths:
+  /echo:
+    post:
+      tags:
+        - Echo
+      summary: Echo test
+      description: |
+        Receive the exact message you've sent
+        
+        ***You can use keep using `markdown` here to write out your description in more detail.***
+      operationId: echo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+              example: Hello world!
+          application/xml:
+            schema:
+              type: string
+              example: Hello world!
+          multipart/form-data:
+            schema:
+              type: string
+              example: Hello world!
+          text/html:
+            schema:
+              type: string
+              example: Hello world!
+        description: Echo payload
+        required: true
+      security:
+        - api_key: []
+      responses:
+        "200":
+          description: |
+            OK. 
+            The request was successfully processed.
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                type: string
+              examples:
+                response:
+                  value: Hello world!
+            application/xml:
+              schema:
+                type: string
+            multipart/form-data:
+              schema:
+                type: string
+            application/x-www-form-urlencoded:
+              schema:
+                type: string
+        "201":
+          $ref: "#/components/responses/201_error_response"
+        "202":
+          $ref: "#/components/responses/202_error_response"
+        "400":
+          $ref: "#/components/responses/400_error_response"
+        "401":
+          $ref: "#/components/responses/401_error_response"
+        "403":
+          $ref: "#/components/responses/403_error_response"
+        "404":
+          $ref: "#/components/responses/404_error_response"
+        "405":
+          $ref: "#/components/responses/405_error_response"
+        "415":
+          $ref: "#/components/responses/415_error_response"
+        "422":
+          $ref: "#/components/responses/422_error_response"
+        "500":
+          $ref: "#/components/responses/500_error_response"
+  /users:
+    get:
+      tags:
+        - User
+      summary: Get a full list of users
+      description: |
+        Some description of the operation.
+
+        ***You can use keep using `markdown` here to write out your description in more detail.***
+      operationId: getAllUsers
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be fetched
+          required: true
+          schema:
+            type: string
+        - name: with_email
+          in: query
+          description: Filter users without email
+          schema:
+            type: boolean
+      security:
+        - main_auth:
+            - read:users
+        - api_key: []
+      responses:
+        "200":
+          description: |
+            OK. 
+            
+            The request was successfully processed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserCollectionResponse"
+        "400":
+          $ref: "#/components/responses/400_error_response"
+        "401":
+          $ref: "#/components/responses/401_error_response"
+        "403":
+          $ref: "#/components/responses/403_error_response"
+        "404":
+          $ref: "#/components/responses/404_error_response"
+        "405":
+          $ref: "#/components/responses/405_error_response"
+        "415":
+          $ref: "#/components/responses/415_error_response"
+        "500":
+          $ref: "#/components/responses/500_error_response"
+  "/users/{username}":
+    parameters:
+      - name: pretty_print
+        in: query
+        description: Pretty print response
+        schema:
+          type: boolean
+    get:
+      tags:
+        - User
+      summary: Get user by user name
+      description: >
+        Some description of the operation.
+
+        ***You can use keep using `markdown` here to write out your description in more detail.***
+      operationId: getUserByName
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be fetched
+          required: true
+          schema:
+            type: string
+        - name: with_email
+          in: query
+          description: Filter users without email
+          schema:
+            type: boolean
+      security:
+        - main_auth:
+            - read:users
+        - api_key: []
+      responses:
+        "200":
+          description: |
+            OK.
+            
+            The request was successfully processed.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserEmbeddedResponse"
+        "400":
+          $ref: "#/components/responses/400_error_response"
+        "401":
+          $ref: "#/components/responses/401_error_response"
+        "403":
+          $ref: "#/components/responses/403_error_response"
+        "404":
+          $ref: "#/components/responses/404_error_response"
+        "405":
+          $ref: "#/components/responses/405_error_response"
+        "415":
+          $ref: "#/components/responses/415_error_response"
+        "500":
+          $ref: "#/components/responses/500_error_response"
+    put:
+      tags:
+        - User
+      summary: Update the user
+      description: |
+        This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be updated
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserRequest"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/UserRequest"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/UserRequest"
+          text/html:
+            schema:
+              $ref: "#/components/schemas/UserRequest"
+        description: Updated user object
+        required: true
+      security:
+        - main_auth:
+            - write:users
+        - api_key: []
+      responses:
+        "200":
+          $ref: "#/components/schemas/UserResponse"
+        "202":
+          $ref: "#/components/schemas/UserResponse"
+        "204":
+          $ref: "#/components/responses/204_error_response"
+        "400":
+          $ref: "#/components/responses/400_error_response"
+        "401":
+          $ref: "#/components/responses/401_error_response"
+        "403":
+          $ref: "#/components/responses/403_error_response"
+        "404":
+          $ref: "#/components/responses/404_error_response"
+        "405":
+          $ref: "#/components/responses/405_error_response"
+        "415":
+          $ref: "#/components/responses/415_error_response"
+        "422":
+          $ref: "#/components/responses/422_error_response"
+        "500":
+          $ref: "#/components/responses/500_error_response"
+    delete:
+      tags:
+        - User
+      summary: Delete user
+      description: |
+        This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: username
+          in: path
+          description: The name that needs to be deleted
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/200_error_response"
+        "202":
+          $ref: "#/components/responses/202_error_response"
+        "204":
+          $ref: "#/components/responses/204_error_response"
+        "400":
+          $ref: "#/components/responses/400_error_response"
+        "401":
+          $ref: "#/components/responses/401_error_response"
+        "403":
+          $ref: "#/components/responses/403_error_response"
+        "404":
+          $ref: "#/components/responses/404_error_response"
+        "405":
+          $ref: "#/components/responses/405_error_response"
+        "415":
+          $ref: "#/components/responses/415_error_response"
+        "500":
+          $ref: "#/components/responses/500_error_response"
+components:
+  responses:
+    200_error_response:
+      description: OK.
+      content:
+        application/json:
+          examples:
+            response:
+              value: |
+                {
+                  "status": "200",
+                  "description": "The request was successfully processed.",
+                  "more_info": ""
+                }    
+    201_error_response:
+      description: Created.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >
+                {
+                  "status": "201",
+                  "description": "The resource was created. The Response Location HTTP header should be returned to indicate where the newly created resource is accessible.",
+                  "more_info": ""
+                } 
+    202_error_response:
+      description: Accepted.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >
+                {
+                  "status": "202",
+                  "description": "Used for asynchronous processing - The server has accepted the request but the result is not available yet. The Response Location HTTP header may be returned to indicate where the created resource will be accessible.",
+                  "more_info": ""
+                } 
+    204_error_response:
+      description: No content.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >
+                {
+                  "status": "204",
+                  "description": "The server successfully processed the request and is not returning any content. ",
+                  "more_info": ""
+                } 
+    400_error_response:
+      description: Bad Request.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >
+                {
+                  "status": "400",
+                  "description": "The server cannot process the request.'The specified resource was not found.",
+                  "more_info": ""
+                } 
+    401_error_response:
+      description: Unauthorised.
+      content:
+        application/json:
+          examples:
+            response:
+              value: |
+                {
+                  "status": "401",
+                  "description": "The request could not be authenticated.",
+                  "more_info": ""
+                }
+    403_error_response:
+      description: Forbidden.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >
+                {
+                  "status": "403",
+                  "description": "The request was authenticated but is not authorised to access the resource.",
+                  "more_info": ""
+                }
+    404_error_response:
+      description: Not found.
+      content:
+        application/json:
+          examples:
+            response:
+              value: |
+                {
+                  "status": "404",
+                  "description": "The resource was not found.",
+                  "more_info": ""
+                }
+    405_error_response:
+      description: Not Allowed.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >+
+                {
+                  "status": "405",
+                  "description": "The method is not implemented for this resource. The response may include an Allow header containing a list of valid methods for the resource.",
+                  "more_info": ""
+                }
+                 
+    408_error_response:
+      description: Request Timeout.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >
+                {
+                  "status": "408",
+                  "description": "The request timed out before a response was received.",
+                  "more_info": ""
+                }
+    415_error_response:
+      description: Unsupported Media Type.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >
+                {
+                  "status": "415",
+                  "description": "This status code indicates that the server refuses to accept the request because the content type specified in the request is not supported by the server.",
+                  "more_info": ""
+                }
+    422_error_response:
+      description: Unprocessable Entity.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >
+                {
+                  "status": "422",
+                  "description": "This status code indicates that the server received the request but it did not fulfil the requirements of the back end. An example is a mandatory field was not provided in the payload.",
+                  "more_info": ""
+                }
+    500_error_response:
+      description: Internal Server Error.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >+
+                {
+                  "status": "500",
+                  "description": "An internal server error. The response body may contain error messages.",
+                  "more_info": ""
+                }
+                 
+    501_error_response:
+      description: Method Not Implemented.
+      content:
+        application/json:
+          examples:
+            response:
+              value: >-
+                {
+                  "status": "501",
+                  "description": "It indicates that the request method is not supported by the server and cannot be handled for any resourceFor example, the server supports GET, POST, PUT, DELETE, and PATCH but not OPTIONS methods.",
+                  "more_info": ""
+                }
+  securitySchemes:
+    main_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://example.com/api/oauth/dialog
+          scopes:
+            read:users: read users info
+            write:users: modify or remove users
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+    basic_auth:
+      type: http
+      scheme: basic
+  schemas:
+    UserCollectionResponse:
+      description: The standard list response that should be used
+      properties:
+        totalRecords:
+          type: number
+          format: int32
+          example: 50
+        _links:
+          type: array
+          items:
+            $ref: "#/components/schemas/HateoasResponse"
+        _embedded:
+          $ref: "#/components/schemas/UserEmbeddedResponse"
+    UserEmbeddedResponse:
+      type: object
+      properties:
+        count:
+          type: number
+          format: int32
+          example: 1
+        users:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserResponse"
+    HateoasResponse:
+      type: object
+      properties:
+        href:
+          type: string
+          example: /users
+          description: The URL to the referenced resource
+        rel:
+          type: string
+          example: self
+          description: The description of the relationship between the resources
+        method:
+          type: string
+          example: GET
+          description: The HTTP method that should be used when referencing this resource
+          enum:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - PATCH
+    Email:
+      description: User email address
+      type: string
+      format: email
+      example: john.smith@example.com
+    UserRequest:
+      type: object
+      properties:
+        username:
+          description: User supplied username
+          type: string
+          minLength: 4
+          example: John78
+        firstName:
+          description: User first name
+          type: string
+          minLength: 1
+          example: John
+        lastName:
+          description: User last name
+          type: string
+          minLength: 1
+          example: Smith
+        email:
+          $ref: "#/components/schemas/Email"
+    UserResponse:
+      type: object
+      example:
+        username: John78
+        firstName: John
+        lastName: Smith
+        email: john.smith78@gmail.com
+        _links:
+          - href: /users/John78
+            rel: self
+            method: GET
+          - href: /users/John78
+            rel: updateUser
+            method: PUT
+          - href: /users/John78
+            rel: deleteUser
+            method: DELETE
+      allOf:
+        - $ref: "#/components/schemas/UserRequest"
+        - type: object
+          properties:
+            _links:
+              type: array
+              items:
+                $ref: "#/components/schemas/HateoasResponse"

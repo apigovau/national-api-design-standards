@@ -1,0 +1,36 @@
+{% assign guide = site.collections | where:"label",page.collection | first %}
+{% assign docs = guide.docs | sort:"nav_order" %}
+
+{% assign next_page = page.next %}
+{% assign next_page_order = page.nav_order | plus: 1 %}
+{% assign previous_page = page.previous %}
+{% assign prev_page_order = page.nav_order | minus: 1 %}
+
+<div class="detail_pagination">
+
+
+{% assign next_page = docs | where: "nav_order" , next_page_order | first %}
+{% assign prev_page = docs | where: "nav_order" , prev_page_order | first %}
+
+{% if next_page != null %}
+	<div class="next_detail_page">
+	    <a href="{{ site.baseurl }}/{{ next_page.url }}">
+			<div class="page_nav_label">Next</div>
+			<div class="page_nav_title">
+				<div>{{next_page.title}}</div>
+			</div>
+		</a>
+	</div>
+{% endif %}
+{% if prev_page != null %}
+	<div class="prev_detail_page">
+	    <a href="{{ site.baseurl }}/{{ prev_page.url }}">
+			<div class="page_nav_label">Back</div>
+			<div class="page_nav_title">
+				<div>{{prev_page.title}}</div>
+			</div>
+		</a>
+	</div>
+{% endif %}
+</div>
+

@@ -1,0 +1,9 @@
+---
+applications:
+- name: api-gov-au-standards
+  memory: 64M
+  disk_quota: 256M
+  buildpack: staticfile_buildpack
+  path: _site
+  routes:
+  - route: staging.api.gov.au/standards

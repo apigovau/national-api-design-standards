@@ -1,0 +1,23 @@
+---
+layout: null
+---
+{% assign guide = site.collections | where:"label","national_api_standards" | first %}
+  {% assign guide_index = guide.docs | where:"section",null | where:"index",true | first %}
+    {% assign index = guide.docs | where:"section",section | where:"index",true | first %}
+      {% assign docs = guide.docs | sort:"nav_order" %}
+{
+  {% assign comma = false %}
+          {% for page in docs %}
+
+
+  {% if page.search_exclude != true %}{% if comma == true%},{% endif %}"{{ forloop.index0 }}": {
+    "title": "{{ page.title | replace: '&amp;', '&' }}",
+    "content": "{{ page.content | markdownify | replace: '</h', ' . </h' | replace: '<hr', ' . <hr' | replace: '</p', ' . </p' | replace: '</ul', ' . </ul' | replace: '</tr', ' . </tr' | replace: '</li', ' | </li' | replace: '</td', ' | </td' | strip_html | escape_once | remove: 'Table of contents' | remove: '```'  | remove: '---' | replace: '\', ' ' | replace: ' .  .  . ', ' . ' | replace: ' .  . ', ' . ' | normalize_whitespace }}",
+    "url": "/standards{{ page.url }}",
+    "relUrl": "/standards{{ page.url }}"
+  }{% assign comma = true %}
+  {% endif %}{% endfor %}
+}
+
+
+

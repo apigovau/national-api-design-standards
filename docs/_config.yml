@@ -1,0 +1,30 @@
+title: API.GOV.AU Standards
+description: API standards for the Australian Government 
+baseurl: "/standards" # the subpath of your site, e.g. /blog
+url: "https://api.gov.au" # the base hostname & protocol for your site, e.g. http://example.com
+
+collections:
+  national_api_standards:
+      output: true
+      name: National API Standards 
+      sections:
+        - full 
+
+# Build settings
+keep_files: [css]
+markdown: gfm 
+theme: minima
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      index: false
+      layout: "base"
+

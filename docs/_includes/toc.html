@@ -1,0 +1,35 @@
+{% assign guide = site.collections | where:"label",page.collection | first %}
+
+  {% assign guide_index = guide.docs | where:"section",null | where:"index",true | first %}
+    {% assign index = guide.docs | where:"section",section | where:"index",true | first %}
+
+      {% assign docs = guide.docs | sort:"nav_order" %}
+      {% if docs.size > 0 %}
+
+        <ul class="au-link-list">
+          {% for doc in docs %}
+
+
+            <li><p><a href="{{ site.baseurl }}{{ doc.url }}">{{ doc.title }}</a></p></li>
+
+
+				{% assign lines = doc.content | jsonify | split: "\n" %}
+				{% for line in lines %}
+				  {% assign a = line | split: ' ' %}
+				  {% if a[0] == '##' %}
+					{% assign text = line | replace: '## ', '' %}
+					{% assign href = text | downcase |  remove: "'" | replace: ' ', '-' %}
+					<li><a href="{{ site.baseurl }}{{ doc.url }}#{{href}}">{{text}}</a></li>
+				  {% endif %}
+				  {% assign theH2_id_start = line | split: '<h2 id=' %}
+					{% if theH2_id_start.size == 2 %}
+				  {% assign theH2_id  = theH2_id_start[1] | split: '>' %}
+				  {% assign theH2_text  = theH2_id[1] | split: '<' %}
+				  {% assign the_id  = theH2_id[0] | remove: '"' | remove: '\'%}
+	
+					<li><a href="{{ site.baseurl }}{{ doc.url }}#{{the_id}}">{{theH2_text[0]}}</a></li>
+	{% endif %}				
+{% endfor %}
+          {% endfor %}
+        </ul>
+      {% endif %}
