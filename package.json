@@ -1,0 +1,25 @@
+{
+  "name": "api-design-standards",
+  "version": "1.0.0",
+  "description": "API Design Standards for the Whole of Australian Government",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://scm.developer.vic.gov.au/Australian-Digital-Council/api-design-standards.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "del": "^5.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-markdown-pdf": "^8.0.0",
+    "gulp-markdown-toc": "^1.1.0",
+    "gulp-replace": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
