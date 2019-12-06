@@ -1,19 +1,29 @@
-# Australian Government - API Design Standard - DRAFT FOR REVIEW.
+# Australian Government - National API Design Standards (NAPIDS)
 
-These API standards are a starting point for collaboration across government to ensure interoperability is front of mind when creating or modifying digital services across government.
+The National API Design Standards (NAPIDS) enable developers building APIs to move past common decision points quickly by referencing pre-agreed, best practice design patterns and implementing their APIs according to these standards.
+
+This common design standard simplifies the process for both consumers and developers of APIs, accelerating API uptake and use.
+
+The NAPIDS are unique. They are designed for participation with API development communities within and outside government by combining the best of open-source software development practice and culture with administrative rigour and oversight.
 
 This repository is being used to seek feedback from the working group, and also provide a view to the general public on the standards that are being created within government.  These standards should also be applicable for entites outside of government and their use is encouraged.
 
 For more information see the contact information below.
 
-You can read the latest version of the standard [here](api-standards.md).
-
-
 <br /><br />
 ______________________________________________________________________________
+
 # Contact Information
 
-TBD
+- State of Victoria - apiteam@dpc.vic.gov.au
+- State of New South Wales - support@onegov.nsw.gov.au
+- State of Queensland - tuo@qld.gov.au
+- State of Tasmania - digital@dpac.tas.gov.au
+- State of Western Australia - WAPlatforms@dpc.wa.gov.au
+- State of South Australia - svc-oft-appservices@sa.gov.au
+- Australian Capital Territory - api@act.gov.au
+- Northern Territory - ictinfrastructure.ntg@nt.gov.au
+- Commonwealth of Australia - platforms@dta.gov.au 
 
 
 <br /><br />
@@ -53,3 +63,20 @@ This will create a `target` directory with a combined.md and combined.pdf files 
 # Reference
 
 This concept is based on the work of the Consumer Data Right published by Data61. See https://github.com/ConsumerDataStandardsAustralia/standards for more information.
+
+<br /><br />
+______________________________________________________________________________
+
+# License
+
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+<br /><br />
+
+______________________________________________________________________________
+
+
+&copy; State Government of Victoria
+
+This information is the work of a collaboration between the Commonwealth of Australia, State Government of New South Wales, State Government of Queensland, State Government of Western Australia, State Government of Tasmania, State Government of South Australia, Northern Territory Government, Australian Capital Territory Government and the State Government of Victoria.
+
