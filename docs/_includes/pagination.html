@@ -14,7 +14,7 @@
 
 {% if next_page != null %}
 	<div class="next_detail_page">
-	    <a href="{{ site.baseurl }}/{{ next_page.url }}">
+	    <a href="{{ site.baseurl }}{{ next_page.url }}">
 			<div class="page_nav_label">Next</div>
 			<div class="page_nav_title">
 				<div>{{next_page.title}}</div>
@@ -24,7 +24,7 @@
 {% endif %}
 {% if prev_page != null %}
 	<div class="prev_detail_page">
-	    <a href="{{ site.baseurl }}/{{ prev_page.url }}">
+	    <a href="{{ site.baseurl }}{{ prev_page.url }}">
 			<div class="page_nav_label">Back</div>
 			<div class="page_nav_title">
 				<div>{{prev_page.title}}</div>
