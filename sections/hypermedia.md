@@ -237,7 +237,7 @@ DELETE https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI
 
 In summary:
 
-- There is a well defined index or navigation entry point for evert API which a client navigates to in order to access all other resources.
+- There is a well defined index or navigation entry point for every API which a client navigates to in order to access all other resources.
 - The client does not need to build the logic of composing URIs to execute different requests or code any kind of business rule by looking into the response details that may be associated with the URIs and state changes.
 - The client acknowledges the fact that the process of creating URIs belongs to the server.
 - Client treats URIs as opaque identifiers.
@@ -263,7 +263,7 @@ Links **MUST** be described using the [Link Description Object (LDO)](http://jso
 
 - The value of the `rel` property indicates the name of the relation to the target resource.
 
-- A value for the `rel` property MUST be provided.
+- A value for the `rel` property **MUST** be provided.
 
 ### method
 
