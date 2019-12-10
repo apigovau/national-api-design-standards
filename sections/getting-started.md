@@ -55,8 +55,8 @@ The available templates are:
 
 - [OpenAPI v2.0 Template (JSON format)](open-api-templates/v2.0/api-example-swagger-v1.4.json)
 - [OpenAPI v2.0 Template (YAML format)](open-api-templates/v2.0/api-example-swagger-v1.4.yml)
-- [OpenAPI v3.0 Template (JSON format)](open-api-templates/v3.0/api-example-swagger-v1.4.json)
-- [OpenAPI v3.0 Template (YAML format)](open-api-templates/v3.0/api-example-swagger-v1.4.yml)
+- [OpenAPI v3.0 Template (JSON format)](open-api-templates/v3.0/api-example-openapi-v1.4.json)
+- [OpenAPI v3.0 Template (YAML format)](open-api-templates/v3.0/api-example-openapi-v1.4.yml)
 
 Once the OpenAPI definition has been copied, designers can perform the following tasks:
 
