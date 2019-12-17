@@ -212,6 +212,9 @@ When using date fields, the following naming conventions for these fields should
 
 - For properties requiring only time information without specifying date, services **MUST** use the suffix `time`, e.g. `appointment_start_time`.
 
+## Examples
+
+### Good URL examples
 
 List of employees:<br />
   `GET` https://gw.api.gov.au/e09284/v1/employees<br />
