@@ -234,16 +234,16 @@ Add a new location to a particular employee:<br />
 
 Non-plural endpoint:
 
-  https://gw.api.vic.gov.au/e09284/v1/employee<br />
-  https://gw.api.vic.gov.au/e09284/v1/employee/1234<br />
-  https://gw.api.vic.gov.au/e09284/v1/employee/1234/location<br />
+  `GET` https://gw.api.vic.gov.au/e09284/v1/employee<br />
+  `GET` https://gw.api.vic.gov.au/e09284/v1/employee/1234<br />
+  `GET` https://gw.api.vic.gov.au/e09284/v1/employee/1234/location<br />
 
-  https://gw.api.gov.au/e09284/v1/employee<br />
-  https://gw.api.gov.au/e09284/v1/employee/1234<br />
-  https://gw.api.gov.au/e09284/v1/employee/1234/location<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee/1234<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee/1234/location<br />
 
 Verb in the URL:<br />
-  https://gw.api.gov.au/e09284/v1/employee/1234/create<br />
+  `POST` https://gw.api.gov.au/e09284/v1/employee/1234/create<br />
 
 Filtering outside in the URL instead of the query string<br />
-  https://gw.api.gov.au/e09284/v1/employee/1234/desc<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee/1234/desc<br />
