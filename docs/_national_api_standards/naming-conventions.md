@@ -75,7 +75,7 @@ The following table provides a breakdown of how to construct the API URI.
 | Path \> API | The API name which is derived from the business domain. | e.g. `/namespace/project-name` <br />Any agency/department can specify the API name that they would like to expose their services on. |
 | Path \> Version | The version of the API that is desired to be accessed by the consumer. | e.g. `/v1` <br/> All APIs must specify a version that follow the versioning scheme as specified in 'versioning' below. |
 | Path \> Collection | The collection identifies a list of resources. The collection **MUST** be named using the **plural** representation of a noun. | e.g. As part of the workforce API - a resource could be a list of `employees`. |
-| Path \> Resource | The resource identifier which corresponds to an instance of the resource. | e.g. As part of the **project-name** API - if there was a specific employee with id E13454. These details can be retrieved using `GET` `/project-name/v1/employees/E13455` |
+| Path \> Resource | The resource identifier which corresponds to an instance of the resource. | e.g. As part of the **project-name** API - if there was a specific employee with id E13454. These details can be retrieved using `GET` `/project-name/v1/employees/E13454` |
 | Query String \> Parameters/Filters | Query parameters **MUST** NOT be used to transport payload or actual data. <br/>The following query parameters **SHOULD** be supported by your API where they would be useful: <ul> <li>**attributes** - specify or restrict the attributes to be returned </li> <li> **filters** – conditions to restrict/filter the collection list </li> <li> **sort** – specify the sort requirement </li> <li> **page** – specify which pagination index to be return in a collection set</li> </ul> | e.g. `attributes=first_name,last_name`  returns data element with only the `first_name` and `last_name` attributes <p> `filters=creation_date => 2001-09-20T13:00:00 and creation_date <= 2001-09-21T13:00:00 and first_name like 'fred' and post_code=3000` - return a collection of resources where the creation date is between 2001-09-20 1pm and 2001-09-21 1pm and first-name like 'fred' and post_code is 3000.</p> <p> `sort=date_of_birth desc` - return a collection where the resources are sorted by date_of_birth in descending order. </p> <p> `page=10` – returns the 10th page index</p>
 
 ### Resource Names
@@ -217,6 +217,9 @@ When using date fields, the following naming conventions for these fields should
 
 - For properties requiring only time information without specifying date, services **MUST** use the suffix `time`, e.g. `appointment_start_time`.
 
+## Examples
+
+### Good URL examples
 
 List of employees:<br />
   `GET` https://gw.api.gov.au/e09284/v1/employees<br />
@@ -236,16 +239,16 @@ Add a new location to a particular employee:<br />
 
 Non-plural endpoint:
 
-  https://gw.api.vic.gov.au/e09284/v1/employee<br />
-  https://gw.api.vic.gov.au/e09284/v1/employee/1234<br />
-  https://gw.api.vic.gov.au/e09284/v1/employee/1234/location<br />
+  `GET` https://gw.api.vic.gov.au/e09284/v1/employee<br />
+  `GET` https://gw.api.vic.gov.au/e09284/v1/employee/1234<br />
+  `GET` https://gw.api.vic.gov.au/e09284/v1/employee/1234/location<br />
 
-  https://gw.api.gov.au/e09284/v1/employee<br />
-  https://gw.api.gov.au/e09284/v1/employee/1234<br />
-  https://gw.api.gov.au/e09284/v1/employee/1234/location<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee/1234<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee/1234/location<br />
 
 Verb in the URL:<br />
-  https://gw.api.gov.au/e09284/v1/employee/1234/create<br />
+  `POST` https://gw.api.gov.au/e09284/v1/employee/1234/create<br />
 
 Filtering outside in the URL instead of the query string<br />
-  https://gw.api.gov.au/e09284/v1/employee/1234/desc<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee/1234/desc<br />
