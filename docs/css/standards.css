@@ -1,3 +1,6 @@
+CODE{
+    overflow-x:auto;
+}
 .search{
     position:relative;
     z-index:99;
