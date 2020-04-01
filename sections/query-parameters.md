@@ -5,7 +5,7 @@ ______________________________________________________________________________
 
 Pagination is the process of returning a large set of results in chunks (or pages) to reduce the amount of information that is sent with each request.
 
-Pagination requires multiple query parameters to be provided, and further information about how to set this up is provided in the [pagination section](query-parameters.html#pagination) of this document.
+Pagination requires multiple query parameters to be provided, and further information about how to set this up is provided in the [pagination section](pagination.html#query-parameters) of this document.
 
 ## Filtering and Sorting
 
