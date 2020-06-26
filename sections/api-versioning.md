@@ -154,7 +154,7 @@ Justification **SHOULD** include the following:
 When a newer API is available API Owners are **RECOMMENDED** to provide two headers in the response when old versions are used:
 
 - X-API-Deprecated - boolean field advising that this has been deprecated
-- X-API-Retire-Time - ISO8601 date advising when it will be deprecated
+- X-API-Retire-Time - ISO8601 date advising when it will be retired
 
 For example:
 
