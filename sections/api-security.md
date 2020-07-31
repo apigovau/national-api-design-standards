@@ -31,12 +31,12 @@ Depending on the security classification you may be required to establish the fo
 ## Authentication and Authorization
 
 - Basic or Digest authentication **SHOULD NOT**  be used.
-- The `Authorization: Bearer` header **MUST** be used for authentication/authorization e.g. using a JWT token.
+- The `Authorization: Bearer` header **MUST** be used for authentication/authorization e.g. using a JWT token. Authorization tokens identify a user — the person — that is using the app or site.
 - A refresh token **SHOULD** be provided for extending expiry time of existing token without having to provide the credentials again. 
 - Always set a reasonable expiration date for tokens. JWT token lifetime **SHOULD NOT*** exceed 5 minutes.
 - JWT refresh tokens **SHOULD** be used when new JWT tokens are required outside of this lifetime. 
 - All APIs **MUST** have a policy that only allows access based on a valid API key.
-- API keys **MUST** be used for client authentication. Use of API keys should only be permitted when TLS is enabled. Rotation policy for API Key should be implemented as well.
+- API keys **MUST** be used for client authentication. Use of API keys should only be permitted when TLS is enabled. Rotation policy for API Key should be implemented as well. API keys identify the calling project — the application or site — making the call to an API.
 - API keys **SHOULD NOT** be included in the URL or query string. API keys **SHOULD** be included in the HTTP header as query strings may be saved by the client or server in unencrypted format by the browser or server application. 
 - CORS headers should only be used when necessary as it reduce overall security mechanisms built into web browsers by selectively relaxing cross-origin restrictions.
 - A request from Domain A is considered cross-origin when it tries to make a request to an API that is hosted in Domain B.
