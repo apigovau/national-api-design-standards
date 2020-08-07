@@ -5,7 +5,7 @@ ______________________________________________________________________________
 
 Applying the right level of security will allow your APIs to perform well without compromising on the security risk.
 
-To secure your APIs the security standards are grouped into three categories: Design, Transport, and Authentication and Authorisation.
+To secure your APIs the security standards are grouped into three categories: Design, Transport, and Authentication & Authorisation.
 
 At minimum the security standards that are defined here **MUST** be applied. Further security considerations may apply depending on the API design and requirements – refer to our [API Design Considerations section](getting-started.html#how-to-apply-the-design-standard) for more details.
 
