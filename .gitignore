@@ -2,3 +2,5 @@ node_modules
 target
 node_modules
 /.vs/slnx.sqlite
+/.vs/national-api-design-standards/v16
+/.vs/VSWorkspaceState.json

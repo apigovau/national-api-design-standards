@@ -57,7 +57,7 @@ A sample 500 Internal Service error:
   "errors": [{
     "id": "86032cbe-a804-4c3b-86ce-ec3041e3effc",
     "detail": "Downstream system is not responding correctly"
-    "code" : "500",
+    "code" : "500"
   }]
 }
 ```
