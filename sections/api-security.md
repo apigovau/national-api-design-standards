@@ -12,7 +12,7 @@ At minimum the security standards that are defined here **MUST** be applied. Fur
 ## Transport Security
 
 - ALL transport **MUST** occur over HTTPS using TLS 1.2.
-- ALL certificates must be SHA256 with minimum key length of 2048.
+- ALL certificates **MUST** be from SHA-2 (Secure Hash Algorithm 2) cryptographic hash functions with minimum key length of 2048.
 - ALL publicly accessible endpoints **MUST** use a Digital Certificate that has been signed by an approved Certificate Authority.
 - Internal facing endpoints **MAY** use self-signed Digital Certificates.
 - Do not redirect HTTP traffic to HTTPS - reject these requests
