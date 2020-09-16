@@ -3,11 +3,17 @@ ______________________________________________________________________________
 
 ## Message Format
 
-For request and response body and query parameter names the message format is **RECOMMENDED** to use snake-case:
+For request and response body field names and query parameter names case **MUST** be consistent, and **SHOULD** be either camelCase OR snake_case:
 
-Example:
+Examples:
+```
+// thisIsCamelCase
 
-```javascript
+{
+  "employeeId" : "AB1837"
+}
+```
+```
 // this_is_snake_case
 
 {
@@ -15,19 +21,8 @@ Example:
 }
 ```
 
-If snake-case is not available, it is then **RECOMMENDED** to use camel case.
-
-Example:
-
-```javascript
-// thisIsCamelCase
-
-{
-  "employeeId" : "AB1837"
-}
-```
-
-In either case the object and field definition must be the same for the request and response body and query parameters.
+Fields that represent arrays **SHOULD** be named using plural nouns (e.g. products - contains one or more products).
+The object and field definition **MUST** be the same for the request and response body as well as corresponding query parameter values.
 
 ## URI Component Names
 
@@ -43,7 +38,7 @@ URLs **MUST** follow the standard naming convention as described below:
 
 
 ```
-   https://gw.api.gov.au/namespace/project-name/v1/collection?attributes=first_name,last_name
+   https://gw.api.gov.au/namespace/project-name/v1/collection?fields=first_name,last_name
    \___/   \___________/\___________________________________/\______________________________/
      |           |                        |                                  |
   scheme     authority                   path                              query
@@ -59,7 +54,7 @@ URLs **MUST** follow the standard naming convention as described below:
 
 - the URI **MUST** be specified in all lower case
 - only hyphens '-' can be used to separate words or path parameters for readability (no spaces or underscores)
-- only underscores '\_' can be used to separate words in query parameter names but not as part of the base URI
+- underscores '\_' or camelCase can be used to separate words in query parameter names but not as part of the base URI
 
 The following table provides a breakdown of how to construct the API URI.
 
@@ -82,12 +77,12 @@ API Designers **MUST** follow these principles when creating a REST API:
 - Resource names **MUST** be lower-case and use only alphabetic characters and hyphens.
 - The hyphen character, ( - ), MUST be used as a word separator in URI path parameters.
   
-**Note** that this is the only place where hyphens are used as a word separator. In nearly all other situations the underscore character, ( _ ), **MUST** be used.
+**Note** that this is the only place where hyphens are used as a word separator. In nearly all other situations camelCase OR an underscore character, ( _ ), **MUST** be used.
 
 Good examples:
 
 - `/employees`
-- `/customers`
+- `/sea-cargo`
 - `/products`
 
 Bad examples:
@@ -99,8 +94,8 @@ Bad examples:
 ### Query Parameter Names
 
 - Literals/expressions in query strings **SHOULD** be separated using underscore ( _ ).
-- Query parameters values **MUST** be percent-encoded.
-- Query parameters **MUST** start with a letter and **SHOULD** be all in lower case. Only alpha characters, digits and the underscore ( _ ) character **SHALL** be used.
+- Query parameters values **MUST** be percent-encoded. Where possible, for portability and compatability reasons, values SHOULD be restricted to the AWS supported query paramter regex ^[a-zA-Z0-9._$-]+$
+- Query parameters **MUST** start with a letter and **SHOULD** be either camelCase or snake_case, consistent with the case standard employed for field names.
 - Query parameters **SHOULD** be optional.
 - Query parameters **SHOULD** not contain characters that are not URL safe.
 
@@ -110,17 +105,17 @@ The data model for the representation **MUST** conform to the `JSON` specificati
 
 The values may themselves be objects, strings, numbers, booleans, or arrays of objects.
 
-- Key names MUST be lower-case words, separated by an underscore character, ( _ ).
+- Key names MUST be either camelCase or snake_case, however case MUST be used consistently.
   - `foo`
-  - `bar_baz`
-- Prefix such as `is_` or `has_` **SHOULD NOT** be used for keys of type boolean.
+  - `barBaz` OR `bar_baz`
+- Prefix such as `is` or `has` **SHOULD NOT** be used for keys of type boolean.
 - Fields that represent arrays **SHOULD** be named using plural nouns (e.g. authenticators-contains one or more authenticators, products-contains one or more products).
 
 ## Link Relation Names
 
 To help guide users through your API relational links **MUST** be provided.  These links act as the navigation of your API advising users of where they can go to next.
 
-A `_links` array **MUST** be provided for resources.  This contains link objects that can refer to related resources in the system.
+A `_links` array **SHOULD** be provided for resources.  This contains link objects that can refer to related resources in the system.
 
 A link relation **MUST** contain the following elements:
 
@@ -206,11 +201,11 @@ To represent Australian Eastern Standard time (+10), the following format would 
 
 When using date fields, the following naming conventions for these fields should be used:
 
-- For properties requiring both date and time, services **MUST** use the suffix `datetime`, e.g. `start_datetime`.
+- For properties requiring both date and time, services **MUST** use the suffix `datetime`, e.g. `startDateTime` | `start_datetime`.
 
-- For properties requiring only date information without specifying time, services **MUST** use the suffix `date`, e.g. `birth_date`.
+- For properties requiring only date information without specifying time, services **MUST** use the suffix `date`, e.g. `birthDate` | `birth_date`.
 
-- For properties requiring only time information without specifying date, services **MUST** use the suffix `time`, e.g. `appointment_start_time`.
+- For properties requiring only time information without specifying date, services **MUST** use the suffix `time`, e.g. `startTime` | `start_time`.
 
 ## Examples
 
