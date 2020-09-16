@@ -31,12 +31,12 @@ Depending on the security classification you may be required to establish the fo
 ## Authentication and Authorization
 
 - Basic or Digest authentication **SHOULD NOT**  be used.
-- The `Authorization: Bearer` header **MUST** be used for authentication/authorization e.g. using a JWT token.
+- The `Authorization: Bearer` header **MUST** be used for authentication/authorization e.g. using a JWT token. Authorization tokens identify a user — the person — that is using the app or site.
 - A refresh token **SHOULD** be provided for extending expiry time of existing token without having to provide the credentials again. 
 - Always set a reasonable expiration date for tokens. JWT token lifetime **SHOULD NOT*** exceed 5 minutes.
 - JWT refresh tokens **SHOULD** be used when new JWT tokens are required outside of this lifetime. 
 - All APIs **MUST** have a policy that only allows access based on a valid API key.
-- API keys **MUST** be used for client authentication. Use of API keys should only be permitted when TLS is enabled. Rotation policy for API Key should be implemented as well.
+- API keys **MUST** be used for client identification. Use of API keys should only be permitted when TLS is enabled. Rotation policy for API Key should be implemented as well. API keys identify the calling project — the application or site — making the call to an API.
 - API keys **SHOULD NOT** be included in the URL or query string. API keys **SHOULD** be included in the HTTP header as query strings may be saved by the client or server in unencrypted format by the browser or server application. 
 - CORS headers should only be used when necessary as it reduce overall security mechanisms built into web browsers by selectively relaxing cross-origin restrictions.
 - A request from Domain A is considered cross-origin when it tries to make a request to an API that is hosted in Domain B.
@@ -129,3 +129,28 @@ It is preferable to use the security policy features available in the WoG API Ga
 | CORS | Listeners-\>Path | CORS can be restricted at path level | Recommended |
 
 The WoG API Team can provide advice on which API Gateway security policies should be applied.
+
+## Protective Marking
+
+Commonwealth entities, and State and territory government agencies that hold or access Commonwealth security classified information are required by the Protective Security Policy Framework to apply appropriate protective marking to classified data to ensure that data is handled and shared appropriately.
+An ‘x-protective-marking’ HTTP header MUST be used to apply appropriate protective marking to Commonwealth security classified information.
+
+The following rules apply to the use of the ‘x-protective-marking’ header:
+•	Transmission of any payload, request or response, containing data classified as having a high business impact level (‘PROTECTED’ at the time of writing) or above MUST be accompanied by an ‘x-protective-marking’ HTTP header. 
+•	Data classified as having a ‘low to medium’ business impact (‘OFFICIAL:Sensitive’ at the time of writing) or above SHOULD be accompanied by an ‘x-protective-marking’ HTTP header, wherever technically feasible. 
+
+The values (and case) of the header should align with the appropriate Security classification literals defined in the [Protective Security Policy Framework](https://www.protectivesecurity.gov.au/information/sensitive-classified-information/Pages/default.aspx), and conforming to the syntax prescribed in the [Annex B Email protective marking standard](https://www.protectivesecurity.gov.au/sites/default/files/2019-09/infosec08-sensitive-and-classified-information-email.pdf). 
+
+**Syntax**
+```
+X-Protective-Marking: VER=<ver>, NS=gov.au, SEC=<securityClassification>(, CAVEAT=<caveatType>:<caveatValue>)*(, EXPIRES=(<genDate>|<event>), DOWNTO=(<securityClassification>))?(, ACCESS=<InformationManagementMarker>)*
+```
+
+The first 2 key-value pairs are largely static. The namespace ('NS') value is always ’gov.au' when produced by Australian Government entities. The version (‘VER’) of the PSPF will change infrequently. At the time of writing, the first 2 key-value pairs appended to the x-protective-marking header will be 'VER=2018.1' and 'NS=gov.au', followed by the security classification marker and further optional markings.
+
+e.g.
+`    x-protective-marking: VER=2018.1, NS=gov.au, SEC=PROTECTED`
+or 
+ `   x-protective-marking: VER=2018.1, NS=gov.au, SEC=OFFICIAL:Sensitive, ACCESS=Personal-Privacy`
+
+Content (payload) classified as having a high business impact level or above MUST NOT be logged, unless over secure channels and to platforms approved for the retention of data to the appropriate classification. 
