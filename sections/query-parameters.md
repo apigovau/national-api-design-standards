@@ -19,12 +19,12 @@ Below are the different techniques used when applying filtering and sorting:
 
 ### Output Selection
 
-Consumers can specify the attributes they wish to return in the [response payload](api-response.html#response-payload) by specifying the attributes in the [query parameters](pagination.html#query-parameters).
+Consumers can specify the fields they wish to return in the [response payload](api-response.html#response-payload) by specifying the fields in the [query parameters](pagination.html#query-parameters).
 
 Example that returns only the `first_name` and `last_name` fields in the response.
 
 ```
-?attributes=first_name,last_name
+?fields=first_name,last_name
 ```
 
 ### Simple Filtering
@@ -71,7 +71,7 @@ The AND, OR conditions are supported.
 Example:
 
 ```
-?filters=creation_date =\> 2001-09-20T13:00:00 and creation_date \<= 2001-09-21T13:00:00 and first_name like 'fred' and post_code=3000
+?filter=creation_date =\> 2001-09-20T13:00:00 and creation_date \<= 2001-09-21T13:00:00 and first_name like 'fred' and post_code=3000
 ```
 
 Return a collection of resources where the `creation_date` is between `2001-09-20 1pm` and `2001-09-21 1pm` and `first-name` like "fred" and `post_code` is 3000.
