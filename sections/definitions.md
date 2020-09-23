@@ -19,20 +19,20 @@ By breaking systems down into these logical areas it allows a clean separation o
 
 ## Resource Identifier
 
-Every _resource_ that is available within your system (e.g. every `employee` or every `leave-request`) must be identifiable uniquely within the system. This is a key element of the RESTful style of APIs; the ability to individually address any item within your system and store these identifiers for later use.
+Every resource that is available within your system (e.g. every employee or every leave-request) must be identifiable uniquely within the system. This is a key element of the RESTful style of APIs; the ability to individually address any item within your system and store these identifiers for later use.
 
 Resource identifiers can be any of the following:
 
-Name|Example|
---- | --- |
-Numeric|`/employees/12389`
-String|`/employees/john-smith`
-GUID | `/employees/0d047d80-eb69-4665-9395-6df5a5e569a4`
-Date (Short form) | `/dates/2018-09-17`
+Name | Example
+-- | --
+Numeric | /employees/12389
+String | /country-codes/australia
+GUID | /employees/0d047d80-eb69-4665-9395-6df5a5e569a4
+Date (Short form) | /dates/2018-09-17
 
 As long as the identifier is unique within your application it can be any string of characters or numbers.
 
-When numeric IDs are used they **MUST** not be sequential e.g. it should not be trivial to guess the next ID. If this is difficult to achieve, then it is likely the API needs to be further abstracted from the underlying data source.
+The resource identifier MUST be immutable. Primary keys or Personally Identifiable Information (PII) MUST NOT be exposed. When numeric IDs are used they MUST NOT be sequential e.g. it should not be trivial to guess the next ID. If this is difficult to achieve, then it is likely the API needs to be further abstracted from the underlying data source. 
 
 ## Representation
 
