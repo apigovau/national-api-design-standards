@@ -71,10 +71,10 @@ The AND, OR conditions are supported.
 Example:
 
 ```
-?filter=creation_date =\> 2001-09-20T13:00:00 and creation_date \<= 2001-09-21T13:00:00 and first_name like 'fred' and post_code=3000
+?filter=creation_date gt 2001-09-20T13:00:00 and creation_date lt 2001-09-21T13:00:00 and post_code eq 3000
 ```
 
-Return a collection of resources where the `creation_date` is between `2001-09-20 1pm` and `2001-09-21 1pm` and `first-name` like "fred" and `post_code` is 3000.
+Return a collection of resources where the `creation_date` is between `2001-09-20 1pm` and `2001-09-21 1pm` and `post_code` is 3000.
 
 ### Match Case Sensitivity
 
