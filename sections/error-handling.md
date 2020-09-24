@@ -16,6 +16,7 @@ Defined here are the attributes of the error object:
 | `source > pointer` | JSON Pointer [RFC6901] to the associated entity in the request document [e.g. "/data" for a primary data object, or "/data/attributes/title" for a specific attribute]. | Optional |
 | `source > parameter` | A string indicating which URI query parameter caused the error. | Optional |
 
+The error schema may be _extended_ with optional fields (e.g. 'helpUrl') as required to meet specific business or enterprise requirements.
 The returned error objects must be in a collection (array) – see the examples for details.
 
 ## Input Validation
