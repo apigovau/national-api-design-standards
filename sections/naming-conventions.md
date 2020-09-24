@@ -38,7 +38,7 @@ URLs **MUST** follow the standard naming convention as described below:
 
 
 ```
-   https://gw.api.gov.au/namespace/project-name/v1/collection?fields=first_name,last_name
+   https://gw.api.gov.au/namespace/project-name/v1/collection?fields=firstName,lastName
    \___/   \___________/\___________________________________/\______________________________/
      |           |                        |                                  |
   scheme     authority                   path                              query
@@ -66,7 +66,7 @@ The following table provides a breakdown of how to construct the API URI.
 | Path \> Version | The version of the API that is desired to be accessed by the consumer. | e.g. `/v1` <br/> All APIs must specify a version that follow the versioning scheme as specified in 'versioning' below. |
 | Path \> Collection | The collection identifies a list of resources. The collection **MUST** be named using the **plural** representation of a noun. | e.g. As part of the workforce API - a resource could be a list of `employees`. |
 | Path \> Resource | The resource identifier which corresponds to an instance of the resource. | e.g. As part of the **project-name** API - if there was a specific employee with id E13454. These details can be retrieved using `GET` `/project-name/v1/employees/E13454` |
-| Query String \> Parameters/Filters | Query parameters **MUST** NOT be used to transport payload or actual data. <br/>The following query parameters **SHOULD** be supported by your API where they would be useful: <ul> <li>**attributes** - specify or restrict the attributes to be returned </li> <li> **filters** – conditions to restrict/filter the collection list </li> <li> **sort** – specify the sort requirement </li> <li> **page** – specify which pagination index to be return in a collection set</li> </ul> | e.g. `attributes=first_name,last_name`  returns data element with only the `first_name` and `last_name` attributes <p> `filters=creation_date => 2001-09-20T13:00:00 and creation_date <= 2001-09-21T13:00:00 and first_name like 'fred' and post_code=3000` - return a collection of resources where the creation date is between 2001-09-20 1pm and 2001-09-21 1pm and first-name like 'fred' and post_code is 3000.</p> <p> `sort=date_of_birth desc` - return a collection where the resources are sorted by date_of_birth in descending order. </p> <p> `page=10` – returns the 10th page index</p>
+| Query String \> Parameters | Query parameters **MUST** NOT be used to transport payload or actual data. <br/>The following query parameters **SHOULD** be supported by your API where they would be useful: <ul> <li>**fields** - specify or restrict the fields to be returned </li> <li> **filter** – conditions to restrict/filter the collection list </li> <li> **sort** – specify the sort requirement </li> <li> **page** – specify which pagination index to be return in a collection set</li> </ul> | e.g. `fields=first_name,last_name`  returns data element with only the `first_name` and `last_name` attributes <p> `filter=creation_date => 2001-09-20T13:00:00 and creation_date <= 2001-09-21T13:00:00 and first_name like 'fred' and post_code=3000` - return a collection of resources where the creation date is between 2001-09-20 1pm and 2001-09-21 1pm and first-name like 'fred' and post_code is 3000.</p> <p> `sort=date_of_birth desc` - return a collection where the resources are sorted by date_of_birth in descending order. </p> <p> `page=10` – returns the 10th page index</p>
 
 ### Resource Names
 
