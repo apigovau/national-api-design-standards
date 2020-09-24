@@ -51,22 +51,20 @@ The equal (=) operator is the only supported operator when used in this techniqu
 
 ### Advanced Filtering
 
-There are situations where simple filtering does not meet the needs and a more comprehensive approach is required. Use the reserved keyword filters to define a more complex filtering logic.
+There are situations where simple filtering does not meet the needs and a more comprehensive approach is required. Use the reserved keyword 'filter' to define a more complex filtering logic.
 
-Multiple attributes with different operator and condition can be defined in the filter query parameter.
+Complex filter logic can be chained together in a single 'filter' value, using OData query compliant query strings.
 
-The following operators are supported:
+The following operators should supported at a minimum:
 
-  1. \>= Greater than or equalled to
-  2. => Equalled to or greater than
-  3. \> Greater than
-  4. < Less than
-  5. <= Less than or equalled to
-  6. =< Equalled to or less than
-  7. = Equalled
-  8. != Not equalled
+  1. gt - Greater than
+  2. lt - Less than
+  3. ge - Greater than or equal to
+  5. le - Less than or equal to
+  7. eq - Equal
+  8. ne - Not equal
 
-The AND, OR conditions are supported.
+The 'and', 'or' conditions shoud be supported.
 
 Example:
 
