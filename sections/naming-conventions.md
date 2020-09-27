@@ -94,7 +94,7 @@ Bad examples:
 ### Query Parameter Names
 
 - Literals/expressions in query strings **SHOULD** be separated using underscore ( _ ).
-- Query parameters values **MUST** be percent-encoded. Where possible, for portability and compatability reasons, values SHOULD be restricted to the AWS supported query paramter regex ^[a-zA-Z0-9._$-]+$
+- Query parameters values **MUST** be percent-encoded. Consider that AWS requires query paramter names to conform to the regex ^[a-zA-Z0-9._$-]+$
 - Query parameters **MUST** start with a letter and **SHOULD** be either camelCase or snake_case, consistent with the case standard employed for field names.
 - Query parameters **SHOULD** be optional.
 - Query parameters **SHOULD** not contain characters that are not URL safe.
