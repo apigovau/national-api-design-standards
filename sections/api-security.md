@@ -136,8 +136,8 @@ Commonwealth entities, and State and territory government agencies that hold or 
 An ‘x-protective-marking’ HTTP header MUST be used to apply appropriate protective marking to Commonwealth security classified information.
 
 The following rules apply to the use of the ‘x-protective-marking’ header:
-•	Transmission of any payload, request or response, containing data classified as having a high business impact level (‘PROTECTED’ at the time of writing) or above MUST be accompanied by an ‘x-protective-marking’ HTTP header. 
-•	Data classified as having a ‘low to medium’ business impact (‘OFFICIAL:Sensitive’ at the time of writing) or above SHOULD be accompanied by an ‘x-protective-marking’ HTTP header, wherever technically feasible. 
+-	Transmission of any payload, request or response, containing data classified as having a high business impact level (‘PROTECTED’ at the time of writing) or above MUST be accompanied by an ‘x-protective-marking’ HTTP header. 
+-	Data classified as having a ‘low to medium’ business impact (‘OFFICIAL:Sensitive’ at the time of writing) or above SHOULD be accompanied by an ‘x-protective-marking’ HTTP header, wherever technically feasible. 
 
 The values (and case) of the header should align with the appropriate Security classification literals defined in the [Protective Security Policy Framework](https://www.protectivesecurity.gov.au/information/sensitive-classified-information/Pages/default.aspx), and conforming to the syntax prescribed in the [Annex B Email protective marking standard](https://www.protectivesecurity.gov.au/sites/default/files/2019-09/infosec08-sensitive-and-classified-information-email.pdf). 
 
