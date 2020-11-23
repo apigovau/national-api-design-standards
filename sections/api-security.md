@@ -31,7 +31,7 @@ Depending on the security classification you may be required to establish the fo
 ## Authentication and Authorization
 
 - Basic or Digest authentication **SHOULD NOT**  be used.
-- The `Authorization: Bearer` header **MUST** be used for authentication/authorization e.g. using a JWT token. Authorization tokens identify a user — the person — that is using the app or site.
+- The `Authorization: Bearer` header **MUST** be used for authentication/authorization e.g. a JWT or opaque token. 
 - A refresh token **SHOULD** be provided for extending expiry time of existing token without having to provide the credentials again. 
 - Always set a reasonable expiration date for tokens. JWT token lifetime **SHOULD NOT*** exceed 5 minutes.
 - JWT refresh tokens **SHOULD** be used when new JWT tokens are required outside of this lifetime. 
