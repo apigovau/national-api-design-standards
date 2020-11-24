@@ -53,7 +53,7 @@ The equal (=) operator is the only supported operator when used in this techniqu
 
 There are situations where simple filtering does not meet the needs and a more comprehensive approach is required. Use the reserved keyword 'filter' to define a more complex filtering logic.
 
-Complex filter logic can be chained together in a single 'filter' value, using OData query compliant query strings.
+Complex filter logic can be chained together in a single 'filter' value, using OData 4.0 query compliant query strings.
 
 The following operators should supported at a minimum:
 
