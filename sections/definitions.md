@@ -92,6 +92,6 @@ Examples:
 
 ```
 GET /employees
-GET /employees/john-smith
-DELETE /employees/john-smith
+GET /employees/6df5a5e569a4
+DELETE /employees/6df5a5e569a4
 ```
