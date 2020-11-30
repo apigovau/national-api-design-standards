@@ -149,8 +149,11 @@ X-Protective-Marking: VER=<ver>, NS=gov.au, SEC=<securityClassification>(, CAVEA
 The first 2 key-value pairs are largely static. The namespace ('NS') value is always ’gov.au' when produced by Australian Government entities. The version (‘VER’) of the PSPF will change infrequently. At the time of writing, the first 2 key-value pairs appended to the x-protective-marking header will be 'VER=2018.1' and 'NS=gov.au', followed by the security classification marker and further optional markings.
 
 e.g.
+
 `    x-protective-marking: VER=2018.1, NS=gov.au, SEC=PROTECTED`
+
 or 
+
  `   x-protective-marking: VER=2018.1, NS=gov.au, SEC=OFFICIAL:Sensitive, ACCESS=Personal-Privacy`
 
 Content (payload) classified as having a high business impact level or above MUST NOT be logged, unless over secure channels and to platforms approved for the retention of data to the appropriate classification. 
