@@ -156,6 +156,6 @@ or
 
  `   x-protective-marking: VER=2018.1, NS=gov.au, SEC=OFFICIAL:Sensitive, ACCESS=Personal-Privacy`
 
-State or territory governments may use the Australian Government (gov.au) namespace, or they may use a different namespace value from the Australian Government and apply rules specific to their jurisdiction.
+State or territory governments may use the Australian Government (gov.au) namespace, or they may use a thier own namespace value (different from the Australian Government) and apply rules specific to their jurisdiction.
 
 Content (payload) classified as having a high business impact level or above MUST NOT be logged, unless over secure channels and to platforms approved for the retention of data to the appropriate classification. 
