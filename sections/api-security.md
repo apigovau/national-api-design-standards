@@ -146,7 +146,7 @@ The values (and case) of the header should align with the appropriate Security c
 X-Protective-Marking: VER=<ver>, NS=gov.au, SEC=<securityClassification>(, CAVEAT=<caveatType>:<caveatValue>)*(, EXPIRES=(<genDate>|<event>), DOWNTO=(<securityClassification>))?(, ACCESS=<InformationManagementMarker>)*
 ```
 
-The first 2 key-value pairs are largely static. The namespace ('NS') value is always ’gov.au' when produced by Australian Government entities. The version (‘VER’) of the PSPF will change infrequently. At the time of writing, the first 2 key-value pairs appended to the x-protective-marking header will be 'VER=2018.1' and 'NS=gov.au', followed by the security classification marker and further optional markings.
+In the case of Commonwealth security classified information, the first 2 key-value pairs are largely static. The namespace ('NS') value is always 'gov.au' when produced by Australian Government entities. The version (‘VER’) of the PSPF will change infrequently. At the time of writing, the first 2 key-value pairs appended to the x-protective-marking header will be 'VER=2018.1' and 'NS=gov.au', followed by the security classification marker and further optional markings.
 
 e.g.
 
@@ -155,5 +155,7 @@ e.g.
 or 
 
  `   x-protective-marking: VER=2018.1, NS=gov.au, SEC=OFFICIAL:Sensitive, ACCESS=Personal-Privacy`
+
+State or territory governments may use the Australian Government (gov.au) namespace, or they may use a different namespace value from the Australian Government and apply rules specific to their jurisdiction.
 
 Content (payload) classified as having a high business impact level or above MUST NOT be logged, unless over secure channels and to platforms approved for the retention of data to the appropriate classification. 
