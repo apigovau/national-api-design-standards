@@ -1,4 +1,5 @@
 node_modules
 target
 node_modules
+/.vs/slnx.sqlite-journal
 /.vs/slnx.sqlite

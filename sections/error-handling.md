@@ -5,7 +5,7 @@ ______________________________________________________________________________
 
 For some errors returning the HTTP status code is enough to convey the response. Additional error information can be supplemented in the response body. For example; HTTP 400 Bad request is considered to be too generic for a validation error and more information must be provided in the response body.
 
-Defined here are the attributes of the error object:
+Defined here are the attributes of the error object, which may be extended to include additional attributes as required to meet specific business or enterprise requirements.
 
 | Error attributes | Description | Mandatory? |
 | --- | --- | --- |
