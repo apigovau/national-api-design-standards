@@ -5,8 +5,8 @@ APIs **SHOULD** follow a "pagination first" policy.
 
 Pagination is **RECOMMENDED** to:
 
-1. serve requests in a timely manner (e.g. > 2s)
-2. ensure the amount of data returned remains within a manageable payload (e.g. > 500kb)
+1. serve requests in a timely manner (e.g. < 2s)
+2. ensure the amount of data returned remains within a manageable payload (e.g. < 500kb)
 3. ensure the data in the response is easily manageable to improve the user experience.
 
 ## Query Parameters
