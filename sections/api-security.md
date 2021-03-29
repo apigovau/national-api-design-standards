@@ -38,7 +38,7 @@ Depending on the security classification you may be required to establish the fo
 - All APIs **MUST** have a policy that only allows access based on a valid API key.
 - API keys **MUST** be used for client authentication. Use of API keys should only be permitted when TLS is enabled. Rotation policy for API Key should be implemented as well.
 - API keys **SHOULD NOT** be included in the URL or query string. API keys **SHOULD** be included in the HTTP header as query strings may be saved by the client or server in unencrypted format by the browser or server application. 
-- CORS headers should only be used when necessary as it reduce overall security mechanisms built into web browsers by selectively relaxing cross-origin restrictions.
+- CORS headers should only be used when necessary as it reduces the overall security mechanisms built into web browsers by selectively relaxing cross-origin restrictions.
 - A request from Domain A is considered cross-origin when it tries to make a request to an API that is hosted in Domain B.
   - For security reasons, browsers restrict cross-origin HTTP requests.
   - The Cross-Origin Resource Sharing standard works by adding new HTTP headers (i.e. Access-Control-Allow-Origin) that allow servers to describe the set of origins that are permitted to access the API
