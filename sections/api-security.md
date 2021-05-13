@@ -152,7 +152,7 @@ e.g.
 `    x-protective-marking: VER=2018.1, NS=gov.au, SEC=PROTECTED`
 
 
-For Commonwealth data, the values (and case) of the header should use the Australian Government (gov.au) namespace and align with the appropriate Security classification literals defined in the [Protective Security Policy Framework](https://www.protectivesecurity.gov.au/information/sensitive-classified-information/Pages/default.aspx), and conforming to the syntax prescribed in the [Annex B Email protective marking standard](https://www.protectivesecurity.gov.au/sites/default/files/2019-09/infosec08-sensitive-and-classified-information-email.pdf). 
+For Commonwealth data the Australian Government (gov.au) namespace should be used, and the values (and case) of the header should align with the appropriate Security classification literals defined in the [Protective Security Policy Framework](https://www.protectivesecurity.gov.au/information/sensitive-classified-information/Pages/default.aspx), and conforming to the syntax prescribed in the [Annex B Email protective marking standard](https://www.protectivesecurity.gov.au/sites/default/files/2019-09/infosec08-sensitive-and-classified-information-email.pdf). 
 
 **Syntax**
 ```
