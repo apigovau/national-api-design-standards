@@ -136,9 +136,9 @@ Protective marking allows entities correctly assess the sensitivity or security 
 
 The following rules apply to the use of the ‘x-protective-marking’ header:
 -	Transmission of any payload, request or response, containing data classified as having a high business impact level or above SHOULD apply by an ‘x-protective-marking’ HTTP header.
--	An ‘x-protective-marking’ HTTP header MUST be used to apply appropriate protective marking to Commonwealth information classified as having a high business impact level or above (classification of ‘PROTECTED’).
+-	An ‘x-protective-marking’ HTTP header MUST be used to apply appropriate protective marking to Commonwealth information classified as having a high business impact level or above (classification of ‘PROTECTED’), and SHOULD be applied to Commonwealth information classified as having a medium business impact level.
 
-The format of the ‘x-protective-marking’ should follow the following format at a minimum, with additional optional semantics defined per jurisdiction:
+The ‘x-protective-marking’ header should follow the following format, with additional optional semantics defined per jurisdiction:
 
 **Syntax**
 ```
