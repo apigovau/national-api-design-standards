@@ -41,7 +41,7 @@ A key concept in RESTful API design is the idea of the representation of a resou
 When you ask the system for employee information you will receive a representation of that employee e.g.
 
 ```
-HTTP 1.1 GET /employees/john-smith
+HTTP 1.1 GET /employees/6df5a5e569a4
 Accept: application/json
 
 200 OK
@@ -49,9 +49,9 @@ Content-Type: application/json
 
 {
   "name" : "John Smith",
-  "employee_id" : "123456",
+  "employeeId" : "123456",
   "position" : "Manager",
-  "on_leave" : false
+  "onLeave" : false
 }
 ```
 
@@ -60,7 +60,7 @@ The intent is this representation can change over time as the system and data wi
 It is also possible to request an entirely different representation of this same resource if the system supports it.  For example, there may be a case where you require a PDF version of this employee and this could be facilitated with a request for a different representation through the `Accept` header:
 
 ```
-HTTP 1.1 GET /employees/john-smith
+HTTP 1.1 GET /employees/6df5a5e569a4
 Accept: application/pdf
 
 200 OK
