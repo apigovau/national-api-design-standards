@@ -138,14 +138,14 @@ An ‘x-protective-marking’ header should be used to apply data classification
 -	Transmission of any payload, request or response, containing data classified as having a high business impact level or above SHOULD be accompanied by an ‘x-protective-marking’ HTTP header.
 -	An ‘x-protective-marking’ HTTP header MUST be used to apply appropriate protective marking to Commonwealth information classified as having a high business impact level or above (classification of ‘PROTECTED’), and SHOULD be applied to Commonwealth information classified as having a medium business impact level.
 
-The ‘x-protective-marking’ header should follow the following format, with additional optional semantics defined per jurisdiction:
+The content of the ‘x-protective-marking’ header should follow the following format, with additional optional semantics defined per jurisdiction:
 
 **Syntax**
 ```
 X-Protective-Marking: VER=<ver>, NS=<namespace>, SEC=<securityClassification>
 ```
 
-The first key-value pair appended to the x-protective-marking header will be the classification version, which is backward compatible and should change infrequently. The second key-value pair is the classification scheme namespace. The security classification marker (and further optional markings) follow.
+The first key-value pair will be the classification version, which is backward compatible and should change infrequently. The second key-value pair is the classification scheme namespace. The security classification marker (and further optional markings) follow.
 
 e.g.
 
