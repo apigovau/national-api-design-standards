@@ -145,7 +145,7 @@ The ‘x-protective-marking’ header should follow the following format, with a
 X-Protective-Marking: VER=<ver>, NS=<namespace>, SEC=<securityClassification>
 ```
 
-The first 2 key-value pairs of a security classification scheme are largely static for a specific REST resource. The first key-value pair appended to the x-protective-marking header will be the classification version, which is backward compatible and should change infrequently. The second key-value pair is the classification scheme namespace. The security classification marker (and further optional markings) follow.
+The first key-value pair appended to the x-protective-marking header will be the classification version, which is backward compatible and should change infrequently. The second key-value pair is the classification scheme namespace. The security classification marker (and further optional markings) follow.
 
 e.g.
 
