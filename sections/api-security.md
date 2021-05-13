@@ -5,14 +5,14 @@ ______________________________________________________________________________
 
 Applying the right level of security will allow your APIs to perform well without compromising on the security risk.
 
-To secure your APIs the security standards are grouped into three categories: Design, Transport, and Authentication and Authorisation.
+To secure your APIs the security standards are grouped into three categories: Design, Transport, and Authentication & Authorisation.
 
 At minimum the security standards that are defined here **MUST** be applied. Further security considerations may apply depending on the API design and requirements – refer to our [API Design Considerations section](getting-started.html#how-to-apply-the-design-standard) for more details.
 
 ## Transport Security
 
 - ALL transport **MUST** occur over HTTPS using TLS 1.2.
-- ALL certificates must be SHA256 with minimum key length of 2048.
+- ALL certificates **MUST** be from SHA-2 (Secure Hash Algorithm 2) cryptographic hash functions with minimum key length of 2048.
 - ALL publicly accessible endpoints **MUST** use a Digital Certificate that has been signed by an approved Certificate Authority.
 - Internal facing endpoints **MAY** use self-signed Digital Certificates.
 - Do not redirect HTTP traffic to HTTPS - reject these requests
@@ -38,7 +38,7 @@ Depending on the security classification you may be required to establish the fo
 - All APIs **MUST** have a policy that only allows access based on a valid API key.
 - API keys **MUST** be used for client authentication. Use of API keys should only be permitted when TLS is enabled. Rotation policy for API Key should be implemented as well.
 - API keys **SHOULD NOT** be included in the URL or query string. API keys **SHOULD** be included in the HTTP header as query strings may be saved by the client or server in unencrypted format by the browser or server application. 
-- CORS headers should only be used when necessary as it reduce overall security mechanisms built into web browsers by selectively relaxing cross-origin restrictions.
+- CORS headers should only be used when necessary as it reduces the overall security mechanisms built into web browsers by selectively relaxing cross-origin restrictions.
 - A request from Domain A is considered cross-origin when it tries to make a request to an API that is hosted in Domain B.
   - For security reasons, browsers restrict cross-origin HTTP requests.
   - The Cross-Origin Resource Sharing standard works by adding new HTTP headers (i.e. Access-Control-Allow-Origin) that allow servers to describe the set of origins that are permitted to access the API
