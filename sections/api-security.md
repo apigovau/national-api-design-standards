@@ -129,3 +129,32 @@ It is preferable to use the security policy features available in the WoG API Ga
 | CORS | Listeners-\>Path | CORS can be restricted at path level | Recommended |
 
 The WoG API Team can provide advice on which API Gateway security policies should be applied.
+
+## Protective Marking
+
+Protective marking allows entities correctly assess the sensitivity or security classification of their information and adopt marking, handling, storage and disposal arrangements that guard against information compromise. The semantics and syntax may be unique to individual jurisdictions.
+
+The following rules apply to the use of the ‘x-protective-marking’ header:
+-	Transmission of any payload, request or response, containing data classified as having a high business impact level or above SHOULD apply by an ‘x-protective-marking’ HTTP header.
+-	An ‘x-protective-marking’ HTTP header MUST be used to apply appropriate protective marking to Commonwealth information classified as having a high business impact level or above (classification of ‘PROTECTED’).
+
+For Commonwealth data, the values (and case) of the header should align with the appropriate Security classification literals defined in the [Protective Security Policy Framework](https://www.protectivesecurity.gov.au/information/sensitive-classified-information/Pages/default.aspx), and conforming to the syntax prescribed in the [Annex B Email protective marking standard](https://www.protectivesecurity.gov.au/sites/default/files/2019-09/infosec08-sensitive-and-classified-information-email.pdf). 
+
+**Syntax**
+```
+X-Protective-Marking: VER=<ver>, NS=gov.au, SEC=<securityClassification>(, CAVEAT=<caveatType>:<caveatValue>)*(, EXPIRES=(<genDate>|<event>), DOWNTO=(<securityClassification>))?(, ACCESS=<InformationManagementMarker>)*
+```
+
+In the case of Commonwealth security classified information, the first 2 key-value pairs are largely static. The namespace ('NS') value is always 'gov.au' when produced by Australian Government entities. The version (‘VER’) of the PSPF will change infrequently. The first key-value pair appended to the x-protective-marking header will be the classification version (currently 'VER=2018.1') and the second key-value pair the Australian Government namespace ('NS=gov.au'). The security classification marker and further optional markings follow.
+
+e.g.
+
+`    x-protective-marking: VER=2018.1, NS=gov.au, SEC=PROTECTED`
+
+or 
+
+ `   x-protective-marking: VER=2018.1, NS=gov.au, SEC=OFFICIAL:Sensitive, ACCESS=Personal-Privacy`
+
+State or territory governments may use the Australian Government (gov.au) namespace and semantics, or they may use a their own namespace value (different from the Australian Government) and apply rules specific to their jurisdiction.
+
+Content (payload) classified as having a high business impact level or above MUST NOT be logged, unless over secure channels and to platforms approved for the retention of data to the appropriate classification. 
