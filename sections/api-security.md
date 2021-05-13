@@ -134,8 +134,8 @@ The WoG API Team can provide advice on which API Gateway security policies shoul
 
 Protective marking allows entities correctly assess the sensitivity or security classification of their information and adopt marking, handling, storage and disposal arrangements that guard against information compromise. Classification semantics may be unique to individual jurisdictions.
 
-The following rules apply to the use of the ‘x-protective-marking’ header:
--	Transmission of any payload, request or response, containing data classified as having a high business impact level or above SHOULD apply by an ‘x-protective-marking’ HTTP header.
+An ‘x-protective-marking’ header should be used to apply data classification. The following rules apply to the use of the ‘x-protective-marking’ header:
+-	Transmission of any payload, request or response, containing data classified as having a high business impact level or above SHOULD be accompanied by an ‘x-protective-marking’ HTTP header.
 -	An ‘x-protective-marking’ HTTP header MUST be used to apply appropriate protective marking to Commonwealth information classified as having a high business impact level or above (classification of ‘PROTECTED’), and SHOULD be applied to Commonwealth information classified as having a medium business impact level.
 
 The ‘x-protective-marking’ header should follow the following format, with additional optional semantics defined per jurisdiction:
