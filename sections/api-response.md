@@ -57,7 +57,7 @@ Location: /persons/65648987235
 
 ### Operations on a Single UI/Experience Resource Instance
 
-A top-level member or root element is not required for a UI/experience, functional or 'private' API response document unless the request is unsuccessful, in which case an ‘errors‘ collection - an array of error objects - SHOULD be returned.
+A top-level member or root element is not required for a UI/experience, functional or 'private' API response document unless the request is unsuccessful, in which case an ‘errors‘ collection - an array of error objects - SHOULD be returned, as outlined in the Error Handling section of this standard.
 
 ### Operations on a Canonical Business Resource Instance
 
