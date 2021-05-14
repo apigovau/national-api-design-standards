@@ -25,7 +25,7 @@ The following operations are applicable for a single resource:
 | HTTP method | Resource Path | Operation |
 | --- | --- | --- |
 | GET | `/resources/{id}` | Get the instance corresponding to the resource ID e.g. GET https://gw.api.gov.au/agency/v1/customers/1234567 |
-| PUT | `/resources/{id}` | To update a resource instance by replacing it – "_Take this new thing and_ _ **put** _ _it there_" |
+| PUT | `/resources/{id}` | To update a resource instance by replacing it – "_Take this new thing and_ _ **put** _ _it there_". If supported, a PUT method must be implimented with care |
 | DELETE | `/resources/{id}` | To delete the resource instance based on the resource e.g. id |
 | PATCH | `/resources/{id}` | Perform changes such as add, update, and delete to the specified attribute(s). Is used often to perform partial updates on a resource |
 
