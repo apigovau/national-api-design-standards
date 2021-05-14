@@ -144,3 +144,4 @@ Not all HTTP status codes are mandatory, or will apply to every operation. The t
 | 500 | Internal Server Error  | √ | √ | √ | √ | √ | √ |
 | 501 | Method Not Implemented | √ |   |   | √ | √ | √ |
 
+Status Code Definitions and the1r correct application are defined by [RFC 2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html)
