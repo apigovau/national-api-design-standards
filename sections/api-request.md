@@ -82,7 +82,7 @@ The following optional request headers **MAY** apply.
 | Cache-Control | Used to specify directives that must be obeyed by all caching mechanisms e.g. no-cache. |
 | If-None-Match | A string of ASCII characters placed between double quotes. Matches the content of the server-provided ‘Etag’ header. The client should include this in any update requests to ascertain whether the version of a resource is unchanged. |
 
-Payload data **MUST** NOT be used in HTTP Headers. They are reserved for transversal information (authentication token, monitoring token, request properties etc).
+Payload data **MUST NOT** be transmitted via HTTP Headers. They are reserved for transversal information (authentication token, monitoring token, request properties etc).
 
 ## Idempotency
 
