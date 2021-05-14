@@ -105,6 +105,7 @@ The following response headers **SHOULD** be included in all responses:
 | --- | --- |
 | Location | path of the newly created resource. e.g. 'v1/persons/65648987235' |
 | Content-Type | Choice of: <ul> <li>`application/json` (required)</li> <li>`application/xml` (optional for `xml`)</li> <li>`multipart/form-data` (optional for files)</li> <li>`text/html` (optional for `html`)</li> </ul> |
+| Request-Id | If a request ID was provided by the client in the request, it SHOULD be returned in the response |
 
 The following response headers **MAY** be included in responses:
 
