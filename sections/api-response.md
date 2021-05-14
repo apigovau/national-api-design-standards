@@ -138,6 +138,7 @@ Not all HTTP status codes are mandatory, or will apply to every operation. The t
 | 405 | Not Allowed            | √ | √ | √ | √ | √ | √ |
 | 408 | Request Timeout        | √ | √ | √ | √ | √ | √ |
 | 415 | Unsupported Media Type | √ | √ | √ | √ |   | √ |
+| 422 | Unprocessable Entity   | √ |   |   | √ |   | √ |
 |     |                        |
 | 500 | Internal Server Error  | √ | √ | √ | √ | √ | √ |
 | 501 | Method Not Implemented | √ |   |   | √ | √ | √ |
