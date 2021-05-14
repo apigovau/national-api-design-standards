@@ -38,7 +38,7 @@ Content-Type: application/json; charset=utf-8
 
 NOTE: Arrays containing very large datasets or large binary objects, such as documents or images, MUST be controlled by pagination. Total payload size MUST NOT exceed 10 Mb. It is suggested that payload size SHOULD NOT exceed 2 Mb, an historical default payload maximum for a number of platforms.
 
-A POST may also be performed on a resource collection to create a new instance of the resource. The server MUST return a ‘Location’ header containing the relative path of the newly created resource, and SHOULD return a resource identifier field in the form of '{resourceName}Id' or '{resourceName}_id'. Additional derived data MAY be returned as deemed appropriate. A links object MAY be returned if required, for instance to return a version link in cases where a versioned change history is maintained.
+A POST may also be performed on a resource collection to create a new instance of the resource. A unique and immutable resource odentifier MUST be created and returned by the resource owner and SHOULD be returned as a payload field  in the form of '{resourceName}Id' or '{resourceName}_id'. Additional derived data MAY be returned as deemed appropriate. The server MUST return a ‘Location’ header containing the relative path of the newly created resource, e.g. '/persons/65648987235'. A links object MAY be returned if required, for instance to return a version link in cases where a versioned change history is maintained.
 
 e.g.  POST /v1/persons
 
