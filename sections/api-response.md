@@ -97,16 +97,24 @@ Example response document:
 
 ## Response Headers
 
-The recommended content type is `JSON` (`application/json`).
+The recommended, and default content type is `JSON` (`application/json`).
 
-The following response headers **MAY** be included in all responses:
+The following response headers **SHOULD** be included in all responses:
+
+| Header | Value |
+| --- | --- |
+| Location | path of the newly created resource. e.g. 'v1/persons/65648987235' |
+| Content-Type | Choice of: <ul> <li>`application/json` (required)</li> <li>`application/xml` (optional for `xml`)</li> <li>`multipart/form-data` (optional for files)</li> <li>`text/html` (optional for `html`)</li> </ul> |
+
+The following response headers **MAY** be included in responses:
 
 | Header | Value |
 | --- | --- |
 | Access-Control-Allow-Origin | The URL that is allowed to access this service from javascript and browser based clients directly.<br/><br/> **Note:** Never use wildcard (*) URLs unless the REST resource is truly public. |
 | Access-Control-Allow-Methods | The methods that are allowed to be accessed from javascript and browser based clients directly. |
 | Access-Control-Allow-Headers | The headers that are allowed to be accessed from javascript and browser based clients directly. |
-| Content-Type | Choice of: <ul> <li>`application/json` (required)</li> <li>`application/xml` (optional for `xml`)</li> <li>`multipart/form-data` (optional for files)</li> <li>`text/html` (optional for `html`)</li> </ul> |
+| x-protective-marking | Should be provided when the message payload contains data classified at ‘OFFICIAL’ or above. The values of the header should align with the appropriate Security classification literals defined buy the owning jurisdiction |
+| Link | WebSub link headers required to support dynamic subscription to the WebSub hub. Compirsed of relationship type “self” (topic) and “hub” (subscription endpoint) e.g. <persons/12345/events>; rel="self", <persons/events/subscribe>; rel="hub" |
 | Cache-Control | Informs the caching mechanisms. It is measured in seconds.max-age=3600 |
 | Date | The date and time that the message was originated Date  e.g. Tue, 15 Nov 1994 08:12:31 GMT |
 | Expires | Gives the date/time after which the response is considered stale  e.g. Thu, 01 Dec 1994 16:00:00 GMT |
