@@ -65,7 +65,7 @@ A canonical business information resource response document SHOULD contain at le
 
 | Status | Top-Level Member |
 | --- | --- |
-| Success (200, 201) | SHOULD contain a top-level ‘data‘ object <br />SHOULD contain a ‘links‘ object – HATEOAS links to sub-resources, including, at a minimum, a ‘self’ reference. <br />MAY contain a ‘meta‘ object - a meta object that contains non-standard meta-information. <br />
+| Success (200, 201) | SHOULD contain a top-level ‘data‘ object <br />SHOULD contain a ‘links‘ object – HATEOAS links to sub-resources, including, at a minimum, a ‘self’ reference. <br />MAY contain a ‘meta‘ object - a meta object that contains non-standard meta-information. <br />MAY contain a ‘messages‘ object – container for informational and warning messages related to the transaction.|
 | Unsuccessful (4xx, 5xx) | MUST contain an ‘errors‘ object - an array of error objects. |
 
 The members ‘data’ and ‘errors’ MUST NOT coexist in the same document.
