@@ -32,13 +32,13 @@ When new major versions are published the older version must be deprecated follo
 
 ## Minor Version
 
-Minor version numbers are displayed on the API documentation page or part of a special management call to the API URI itself. To support this your API **SHOULD** implement a response to a GET request to the base URI of the API and return the following metadata in the response:
+Minor version numbers are displayed on the API documentation page or part of a special management call to the API URI itself. To support this your API **MUST** implement a response to a GET request to the base URI of the API and return the following metadata in the response:
 
-- **api_name** or **apiName** :  The API Name
-- **api_version** or **apiVersion** : The API Version with major and minor versions
-- **api_released** or **apiReleased** : The date the API was released
-- **api_documentation:** or **apiDocumentation** : Links to the API Documentation
-- **api_status** or **apiStatus** " To indicate whether an API is still active or has been deprecated.
+- **api_name:** The API Name
+- **api_version:** The API Version with major and minor versions
+- **api_released:** The date the API was released
+- **api_documentation:** Links to the API Documentation
+- **api_status:** To indicate whether an API is still active or has been deprecated.
 
 Additional metadata can be added to the response if required.
 
