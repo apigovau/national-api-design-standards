@@ -74,7 +74,7 @@ When employing extra-data messages, the intent of such messages **MUST** be clea
 
 When utilised. Warning and information messages **MUST** be returned as child objects of a single 'messages' top level collection, and **MAY ONLY** be returned with a success response (Success 200, 201).
 
-The attributes of messages objects **MUST** follow the error object definition described above, and **SHOULD** include an aditional 'severity' attribute.
+The messages object **MUST** conform to the error object definition described above, and **SHOULD** include an aditional 'severity' attribute.
 
 | Attribute | Description | Mandatory? |
 | --- | --- | --- |
@@ -95,7 +95,7 @@ Sample warning content :
       "severity": "warning",
       "id": "86032cbe-a804-4c3b-86ce-ec3041e3effc",
       "code": "APP0025",
-      "detail": "application to be retired 2022-01-01 due to inactivity"
+      "detail": "application 65648987234 to be retired 2022-01-01 due to inactivity"
     }
   ]
 }
