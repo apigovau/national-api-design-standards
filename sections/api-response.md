@@ -61,6 +61,8 @@ A top-level member or root element is not required for a UI/experience, function
 
 ### Operations on a Business Information Resource Instance
 
+A business information resource is a specific data asset acted upon and managed through a state life-cycle by a specific business process. A business information resource will have value outside of its specific sub-domain, and will belong to a System of Record (SoR), the definitive source of the data through all stages of the information life-cycle. Resource models will typically be distilled via a process of Domain Driven Design. Examples of business information resources might include 'accounts' or 'clients'.
+
 A canonical business information resource response document SHOULD contain at least one of the following top-level members:
 
 | Status | Top-Level Member |
