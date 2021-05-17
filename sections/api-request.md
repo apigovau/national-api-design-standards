@@ -62,7 +62,7 @@ All APIs **MUST** support the following request headers:
 
 | Header | Value |
 | --- | --- |
-| Authorization / Identification | One of: <ul> <li> API Key </li> <li> Basic Auth (APIKey + Secret) </li> <li> Username + Password </li> <li> Bearer {token} </li></ul> |
+| Authorization | One of: <ul> <li> Basic Auth (API-Key + Secret) </li> <li> Username + Password </li> <li> Bearer {token} </li></ul> |
 
 The following request headers **SHOULD** be supported.
 
@@ -71,6 +71,7 @@ The following request headers **SHOULD** be supported.
 | Content-Type | A choice of: <ul> <li> `application/json` (required)</li> <li> `application/xml` (optional for xml)</li> <li> `multipart/form-data` (optional for files) </li> <li> `application/x-www-form-urlencoded` (optional for form data) </li> </ul> |
 | Accept | Content-Types that are acceptable for the response. Choice of: <ul> <li> `application/json` (required) </li> <li> `application/xml` (optional for xml) </li></ul> |
 | Request-Id | A unique identifier for the API request to assist with issue resolution |
+| API-Key | A unique client application identifier, usually issued by an API Developer portal |
 
 The following optional request headers **MAY** apply.
 
