@@ -128,8 +128,6 @@ It is preferable to use the security policy features available in the WoG API Ga
 | OAUTH | Filter -\> OAUTH | OAUTH can be used for authorizing the consumers | Optional as it depends on business requirements |
 | CORS | Listeners-\>Path | CORS can be restricted at path level | Recommended |
 
-The WoG API Team can provide advice on which API Gateway security policies should be applied.
-
 ## Protective Marking
 
 Protective marking allows entities correctly assess the sensitivity or security classification of their information and adopt marking, handling, storage and disposal arrangements that guard against information compromise. Classification semantics may be unique to individual jurisdictions.
