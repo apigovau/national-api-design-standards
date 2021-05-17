@@ -85,10 +85,10 @@ Sample warning content :
 ```javascript
 {
   "data": {
-           "applicationId": "65648987234",
-           "creationDate": "2020-01-01",
-           "applicantId": "123456",
-           "status": "incomplete"
+    "applicationId": "65648987234",
+    "creationDate": "2020-01-01",
+    "applicantId": "123456",
+    "status": "incomplete"
   }
   "messages": [
     {
