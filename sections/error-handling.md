@@ -70,9 +70,9 @@ A sample 500 Internal Service error:
 ## Warning and Information Responses
 
 It may be appropriate in some scenarios for resource servers to return information about non-critical errors or other significant conditions.
-When employing extra-data messages, the intent of such messages **MUST** be clearly articulated in API specifications, **MUST NOT** unduely constrain or direct client behaviour (i.e. avoid close coupling) and **MUST NOT** be stateful (i.e. do not represent retention of client state by the server). Warning and information messages **SHOULD** be returned only in exceptional circumstances, **MUST ONLY** be returned by a server and **MUST NOT** be passed to a server by a client.
+When employing extra-data messages, the intent of such messages **MUST** be clearly articulated in API specifications, **MUST NOT** constrain or direct client behaviour (i.e. avoid close coupling) and **MUST NOT** be stateful (i.e. do not represent retention of client state by the server). Warning and information messages **SHOULD** be returned only in exceptional circumstances, **MUST ONLY** be returned by a server and **MUST NOT** be passed to a server by a client.
 
-When utilised. Warning and information messages **MUST** be returned as child objects of a single 'messages' top level collection, and **MAY ONLY** be returned with a success response (Success 200, 201).
+When utilised, warning and information messages **MUST** be returned as child objects of a single 'messages' top level collection, and **MAY ONLY** be returned with a success response (Success 200, 201).
 
 The messages object **MUST** conform to the error object definition described above, and **SHOULD** include an aditional 'severity' attribute.
 
