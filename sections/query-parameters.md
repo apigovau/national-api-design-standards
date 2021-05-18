@@ -91,14 +91,14 @@ The two parameters that make up sorting are as follows:
 | Query Parameter | Description |
 | --- | --- |
 | `sort` | The direction to sort e.g. `asc` or `desc` |
-| `sort_fields` | The fields to sort by e.g. `id` or `name` |
+| `sort-fields` | The fields to sort by e.g. `id` or `name` |
 
-`sort_fields` is plural as the following options are both available:
+`sort-fields` is plural as the following options are both available:
 
 Examples:
 
-- `?sort=asc&sort_fields=name,last_modified`
+- `?sort=asc&sort-fields=name,last_modified`
 
-- `?sort=desc&sort_fields=name&sort_fields=last_modified`
+- `?sort=desc&sort-fields=name&sort_fields=last_modified`
 
 Both of these queries should sort first by name and then by last modified date.
