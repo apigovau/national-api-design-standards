@@ -152,11 +152,6 @@ e.g.
 
 For Commonwealth data the Australian Government (gov.au) namespace should be used, and the values (and case) of the header should align with the appropriate Security classification literals defined in the [Protective Security Policy Framework](https://www.protectivesecurity.gov.au/information/sensitive-classified-information/Pages/default.aspx), and conforming to the syntax prescribed in the [Annex B Email protective marking standard](https://www.protectivesecurity.gov.au/sites/default/files/2019-09/infosec08-sensitive-and-classified-information-email.pdf). 
 
-**Syntax**
-```
-X-Protective-Marking: VER=<ver>, NS=gov.au, SEC=<securityClassification>(, CAVEAT=<caveatType>:<caveatValue>)*(, EXPIRES=(<genDate>|<event>), DOWNTO=(<securityClassification>))?(, ACCESS=<InformationManagementMarker>)*
-```
-
 State or territory governments may use the Australian Government (gov.au) namespace and semantics, or they may use a their own namespace value (different from the Australian Government) and apply rules specific to their jurisdiction.
 
 Content (payload) classified as having a high business impact level or above MUST NOT be logged, unless over secure channels and to platforms approved for the retention of data to the appropriate classification. 
