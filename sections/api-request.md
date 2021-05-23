@@ -81,7 +81,8 @@ The following optional request headers **MAY** apply.
 | Date | The date and time at which the message was originated, in "HTTP-date" format as defined by [RFC 7231 Date/Time Formats](http://tools.ietf.org/html/rfc7231#section-7.1.1.1). E.g. `Tue, 15 Nov 1994 08:12:31 GMT`.  |
 | Cookie | An HTTP cookie previously sent by the server. |
 | Cache-Control | Used to specify directives that must be obeyed by all caching mechanisms e.g. no-cache. |
-| If-None-Match | A string of ASCII characters placed between double quotes. Matches the content of the server-provided ‘Etag’ header. The client should include this in any update requests to ascertain whether the version of a resource is unchanged. |
+| If-Match | A string of ASCII characters placed between double quotes.Makes the request conditional. For GET and HEAD methods, the server will send back the requested resource only if it matches one of the listed ETags. For PUT and other non-safe methods, it will only upload the resource in this case.
+| If-None-Match | A string of ASCII characters placed between double quotes.  For GET and HEAD methods, the server will send back the requested resource, with a 200 status, only if it doesn't have an ETag matching the given ones. For other methods, the request will be processed only if the eventually existing resource's ETag doesn't match any of the values listed. |
 
 Payload data **MUST NOT** be transmitted via HTTP Headers. They are reserved for transversal information (authentication token, monitoring token, request properties etc).
 
