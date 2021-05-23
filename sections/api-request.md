@@ -71,7 +71,7 @@ The following request headers **SHOULD** be supported.
 | Content-Type | A choice of: <ul> <li> `application/json` (required)</li> <li> `application/xml` (optional for xml)</li> <li> `multipart/form-data` (optional for files) </li> <li> `application/x-www-form-urlencoded` (optional for form data) </li> </ul> |
 | Accept | Content-Types that are acceptable for the response. Choice of: <ul> <li> `application/json` (required) </li> <li> `application/xml` (optional for xml) </li></ul> |
 | Request-Id | A unique identifier for the API request to assist with issue resolution |
-| API-Key | A unique client application identifier, usually issued by an API Developer portal |
+| API-Key | A unique client application identifier, usually issued by an API developer portal |
 
 The following optional request headers **MAY** apply.
 
@@ -81,7 +81,7 @@ The following optional request headers **MAY** apply.
 | Date | The date and time at which the message was originated, in "HTTP-date" format as defined by [RFC 7231 Date/Time Formats](http://tools.ietf.org/html/rfc7231#section-7.1.1.1). E.g. `Tue, 15 Nov 1994 08:12:31 GMT`.  |
 | Cookie | An HTTP cookie previously sent by the server. |
 | Cache-Control | Used to specify directives that must be obeyed by all caching mechanisms e.g. no-cache. |
-| If-Match | A string of ASCII characters placed between double quotes.Makes the request conditional. For GET and HEAD methods, the server will send back the requested resource only if it matches one of the listed ETags. For PUT and other non-safe methods, it will only upload the resource in this case.
+| If-Match | A string of ASCII characters placed between double quotes. Makes the request conditional. For GET and HEAD methods, the server will send back the requested resource only if it matches one of the listed ETags. For PUT and other non-safe methods, it will only upload the resource in this case.
 | If-None-Match | A string of ASCII characters placed between double quotes.  For GET and HEAD methods, the server will send back the requested resource, with a 200 status, only if it doesn't have an ETag matching the given ones. For other methods, the request will be processed only if the eventually existing resource's ETag doesn't match any of the values listed. |
 
 Payload data **MUST NOT** be transmitted via HTTP Headers. They are reserved for transversal information (authentication token, monitoring token, request properties etc).
