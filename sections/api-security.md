@@ -24,7 +24,6 @@ Depending on the security classification you may be required to establish the fo
 - Mutual authentication between the consumer and the API Gateway
 - Mutual authentication between the API Gateway and the back-end API
 - PKI Mutual TLS OAuth Client Authentication Method
-- Private Key JWT Client Authentication for OIDC
 - IP Whitelisting of API Consumers using either API Gateway Policy or Firewall configurations
 - IP Whitelisting of API Publishers using either API Gateway Policy or Firewall configurations
 - Payload encryption while in transit
