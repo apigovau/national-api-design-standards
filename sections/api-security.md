@@ -36,8 +36,8 @@ Depending on the security classification you may be required to establish the fo
 - A refresh token **SHOULD** be provided for extending expiry time of existing token without having to provide the credentials again. 
 - Always set a reasonable expiration date for tokens. An OIDC access token lifetime **SHOULD NOT*** exceed 5 minutes.
 - JWT refresh tokens **SHOULD** be used when new JWT tokens are required outside of this lifetime. 
-- All APIs **MUST** have a policy that only allows access to an authenticated client application.
-- Client application identity **MUST** be established via a consistent mechanism. This may be via an API Key, or via a more robust mechanism such as an OAuth 2.0 asserted server identity. Use of API keys should only be permitted when TLS is enabled. Rotation policy for API Key/secret should be implemented where applicable.
+- Client application identity **SHOULD** be established via a consistent mechanism. This may be via an API Key, or via a more robust mechanism such as an OAuth 2.0 asserted server identity. 
+- Use of API keys **SHOULD** only be permitted when TLS is enabled. Rotation policy for API Key/secret should be implemented where applicable.
 - API key and secret **SHOULD NOT** be included in the URL or query string. API keys **SHOULD** be included in the HTTP header as query strings may be saved by the client or server in unencrypted format by the browser or server application. 
 - CORS headers should only be used when necessary as it reduces the overall security mechanisms built into web browsers by selectively relaxing cross-origin restrictions.
 - A request from Domain A is considered cross-origin when it tries to make a request to an API that is hosted in Domain B.
