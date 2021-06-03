@@ -1,6 +1,10 @@
 CODE{
     overflow-x:auto;
 }
+
+p CODE{
+    overflow-x:visible;
+}
 .search{
     position:relative;
     z-index:99;
