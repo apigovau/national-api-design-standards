@@ -1,55 +1,9 @@
 ______________________________________________________________________________
 # API Request
 
-## Request Headers
-
-All APIs **MUST** support the following request headers:
-
-| Header | Value |
-| --- | --- |
-| Authorization / Identification | One of: <ul> <li> API Key </li> <li> Basic Auth (APIKey + Secret) </li> <li> Username + Password </li> <li> Bearer {token} </li></ul> |
-
-The following request headers are optional.
-
-| Header | Value |
-| --- | --- |
-| Content-Type | A choice of: <ul> <li> `application/json` (required)</li> <li> `application/xml` (optional for xml)</li> <li> `multipart/form-data` (optional for files) </li> <li> `application/x-www-form-urlencoded` (optional for form data) </li> </ul> |
-| Accept | Content-Types that are acceptable for the response. Choice of: <ul> <li> `application/json` (required) </li> <li> `application/xml` (optional for xml) </li></ul> |
-| Connection | Control options for the current connection. e.g. `keep-alive`. |
-| Date | The date and time at which the message was originated, in "HTTP-date" format as defined by [RFC 7231 Date/Time Formats](http://tools.ietf.org/html/rfc7231#section-7.1.1.1). E.g. `Tue, 15 Nov 1994 08:12:31 GMT`.  |
-| Cookie | An HTTP cookie previously sent by the server. |
-| Cache-Control | Used to specify directives that must be obeyed by all caching mechanisms e.g. no-cache. |
-| ETag | Used to identify the particular version of a resource being updated to prevent multiple user updates. This should match what is currently stored on the server.|
-
-Payload data **MUST** NOT be used in HTTP Headers. They are reserved for transversal information (authentication token, monitoring token, request properties etc).
-
 ## HTTP Request Methods
 
 RESTful API operations are based on the HTTP Request Method standard as defined by [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4.3).
-
-### Supported HTTP request methods
-
-|HTTP Method|Description|
-|---|---|
-| `GET`| To _retrieve_ a resource. |
-| `POST`| To _create_ a new resource, or to _execute_ an operation on a resource that changes the state of the system e.g. send a message. |
-| `PUT`| To _replace_ a resource with another supplied in the request. |
-| `PATCH`| To perform a _partial update_ to a resource. |
-| `DELETE`| To _delete_ a resource. |
-| `HEAD`| For retrieving metadata about the request e.g. how many results _would_ a query return? (without actually performing the query). |
-| `OPTIONS`| Used to determine if a CORS (cross-origin resource sharing) request can be made. This is primarily used in front-end web applications to determine if they can use APIs directly. |
-
-A request to retrieve resources can be made for a single resource or a collection of resources.
-
-Consider the following example:
-
-```
-https://gw.api.gov.au/agency/v1/customers/{id}
-```
-
-To retrieve a collection of customers, a request is sent to the URN `/customers`.
-
-To retrieve a single "customer", a request is sent to the URN `/customers/{id}`.
 
 ### Collection of Resources
 
@@ -62,9 +16,7 @@ The following operations are applicable for a collection of resources:
 
 **Note:**
 
-Creating or updating multiple resource instances in the same request is currently not standardised. There are factors such as receipt acknowledgement and how to handle partial success in a set of batches that must be considered on a case-by-case basis.
-
-Future versions of the specification may address batch processing using APIs.
+Creating or updating multiple resource instances in the same request is not standardised, and should be avoided. There are factors such as receipt acknowledgement and how to handle partial success in a set of batches that add significant complexity.
 
 ### Single Resource
 
@@ -72,18 +24,67 @@ The following operations are applicable for a single resource:
 
 | HTTP method | Resource Path | Operation |
 | --- | --- | --- |
-| GET | `/resources/{id}` | Get the instance corresponding to the resource ID |
-| PUT | `/resources/{id}` | To update a resource instance by replacing it – "_Take this new thing and_ _ **put** _ _it there_" |
+| GET | `/resources/{id}` | Get the instance corresponding to the resource ID e.g. GET https://gw.api.gov.au/agency/v1/customers/1234567 |
+| PUT | `/resources/{id}` | To update a resource instance by replacing it – "_Take this new thing and_ _ **put** _ _it there_". If supported, a PUT method must be implimented with care |
 | DELETE | `/resources/{id}` | To delete the resource instance based on the resource e.g. id |
 | PATCH | `/resources/{id}` | Perform changes such as add, update, and delete to the specified attribute(s). Is used often to perform partial updates on a resource |
 
-## Request Payload Formats
+## Request Document Structure
 
 At minimum the API **MUST** support a `JSON` formatted payload when supplied.
-
 Other payload format such as `XML`, `CSV` and `YAML` may be supported as needed.
+The additional format support must be documented in your API design (Swagger/OpenAPI definition).
 
-The additional format support must be documented in your API design (Swagger definition).
+### Operations on a Business Information Resource
+
+A JSON document passed to a canonical business information resource (POST, PUT, PATCH) SHOULD contain a ‘data’ top-level member to hold the primary data for the request. The 'data' object is NOT required to wrap UI/experience or ‘private’ client-coupled API request data.
+
+The request document MAY also contain a ‘meta’ top-level object if, and only if, it is specifically defined by the API Specification. The ‘meta’ object is used to provide additional information such as second factor authorisation data, copyright, timestamps, origin, ownership, dlm, or other purposes that are complementary to the workings of the API.
+
+e.g.      POST /v1/persons  
+
+```
+{
+   "data": {
+      "familyName": "SMITH",
+      "givenName": "Jane",
+      "sexType": "F",
+      "birthDate": "1992-01-01"
+   }
+}
+```
+
+The ‘resourceId’ payload field is not required (nor should it be supported) when the resource object originates at the client, for either creation of or update to a resource on the server. The unique and immutable resource identifier MUST be managed exclusively by the resource owner.
+
+## Request Headers
+
+All APIs **MUST** support the following request headers:
+
+| Header | Value |
+| --- | --- |
+| Authorization | One of: <ul> <li> Basic Auth (API-Key + Secret) </li> <li> Username + Password </li> <li> Bearer {token} </li></ul> |
+
+The following request headers **SHOULD** be supported.
+
+| Header | Value |
+| --- | --- |
+| Content-Type | A choice of: <ul> <li> `application/json` (required)</li> <li> `application/xml` (optional for xml)</li> <li> `multipart/form-data` (optional for files) </li> <li> `application/x-www-form-urlencoded` (optional for form data) </li> </ul> |
+| Accept | Content-Types that are acceptable for the response. Choice of: <ul> <li> `application/json` (required) </li> <li> `application/xml` (optional for xml) </li></ul> |
+| Request-Id | A unique identifier for the API request to assist with issue resolution |
+| API-Key | A unique client application identifier, usually issued by an API developer portal |
+
+The following optional request headers **MAY** apply.
+
+| Header | Value |
+| --- | --- |
+| Connection | Control options for the current connection. e.g. `keep-alive`. |
+| Date | The date and time at which the message was originated, in "HTTP-date" format as defined by [RFC 7231 Date/Time Formats](http://tools.ietf.org/html/rfc7231#section-7.1.1.1). E.g. `Tue, 15 Nov 1994 08:12:31 GMT`.  |
+| Cookie | An HTTP cookie previously sent by the server. |
+| Cache-Control | Used to specify directives that must be obeyed by all caching mechanisms e.g. no-cache. |
+| If-Match | A string of ASCII characters placed between double quotes. Makes the request conditional. For GET and HEAD methods, the server will send back the requested resource only if it matches one of the listed ETags. For PUT and other non-safe methods, it will only upload the resource in this case.
+| If-None-Match | A string of ASCII characters placed between double quotes.  For GET and HEAD methods, the server will send back the requested resource, with a 200 status, only if it doesn't have an ETag matching the given ones. For other methods, the request will be processed only if the eventually existing resource's ETag doesn't match any of the values listed. |
+
+Payload data **MUST NOT** be transmitted via HTTP Headers. They are reserved for transversal information (authentication token, monitoring token, request properties etc).
 
 ## Idempotency
 
