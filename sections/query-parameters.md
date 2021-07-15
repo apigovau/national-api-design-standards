@@ -21,10 +21,10 @@ Below are the different techniques used when applying filtering and sorting:
 
 Consumers can specify the fields they wish to return in the [response payload](api-response.html#response-payload) by specifying the fields in the [query parameters](pagination.html#query-parameters).
 
-Example that returns only the `first_name` and `last_name` fields in the response.
+Example that returns only the `firstName` and `lastName` fields in the response.
 
 ```
-?fields=first_name,last_name
+?fields=firstName,lastName
 ```
 
 ### Simple Filtering
@@ -34,10 +34,10 @@ Attributes can be used to filter a collection of resources.
 Example:
 
 ```
-?last_name=Citizen
+?lastName=Citizen
 ```
 
-will filter out the collection of resources with the attribute `last_name` that matches `Citizen`.
+will filter out the collection of resources with the attribute `lastName` that matches `Citizen`.
 
 Example:
 
@@ -69,10 +69,10 @@ The 'and', 'or' conditions shoud be supported.
 Example:
 
 ```
-?filter=creation_date gt 2001-09-20T13:00:00 and creation_date lt 2001-09-21T13:00:00 and post_code eq 3000
+?filter=creationDate gt 2001-09-20T13:00:00 and creationDate lt 2001-09-21T13:00:00 and postCode eq 3000
 ```
 
-Return a collection of resources where the `creation_date` is between `2001-09-20 1pm` and `2001-09-21 1pm` and `post_code` is 3000.
+Return a collection of resources where the `creationDate` is between `2001-09-20 1pm` and `2001-09-21 1pm` and `postCode` is 3000.
 
 ### Match Case Sensitivity
 
@@ -91,14 +91,14 @@ The two parameters that make up sorting are as follows:
 | Query Parameter | Description |
 | --- | --- |
 | `sort` | The direction to sort e.g. `asc` or `desc` |
-| `sort_fields` | The fields to sort by e.g. `id` or `name` |
+| `sort-fields` | The fields to sort by e.g. `id` or `name` |
 
-`sort_fields` is plural as the following options are both available:
+`sort-fields` is plural as the following options are both available:
 
 Examples:
 
-- `?sort=asc&sort_fields=name,last_modified`
+- `?sort=asc&sort-fields=name,last_modified`
 
-- `?sort=desc&sort_fields=name&sort_fields=last_modified`
+- `?sort=desc&sort-fields=name&sort_fields=last_modified`
 
 Both of these queries should sort first by name and then by last modified date.
