@@ -5,14 +5,14 @@ ______________________________________________________________________________
 
 Applying the right level of security will allow your APIs to perform well without compromising on the security risk.
 
-To secure your APIs the security standards are grouped into three categories: Design, Transport, and Authentication and Authorisation.
+To secure your APIs the security standards are grouped into three categories: Design, Transport, and Authentication & Authorisation.
 
 At minimum the security standards that are defined here **MUST** be applied. Further security considerations may apply depending on the API design and requirements – refer to our [API Design Considerations section](getting-started.html#how-to-apply-the-design-standard) for more details.
 
 ## Transport Security
 
-- ALL transport **MUST** occur over HTTPS using TLS 1.2.
-- ALL certificates must be SHA256 with minimum key length of 2048.
+- ALL transport **MUST** occur over HTTPS using at least TLS 1.2.
+- ALL certificates **MUST** be from SHA-2 (Secure Hash Algorithm 2) cryptographic hash functions with minimum key length of 2048.
 - ALL publicly accessible endpoints **MUST** use a Digital Certificate that has been signed by an approved Certificate Authority.
 - Internal facing endpoints **MAY** use self-signed Digital Certificates.
 - Do not redirect HTTP traffic to HTTPS - reject these requests
@@ -23,6 +23,7 @@ Depending on the security classification you may be required to establish the fo
 
 - Mutual authentication between the consumer and the API Gateway
 - Mutual authentication between the API Gateway and the back-end API
+- PKI Mutual TLS OAuth Client Authentication Method
 - IP Whitelisting of API Consumers using either API Gateway Policy or Firewall configurations
 - IP Whitelisting of API Publishers using either API Gateway Policy or Firewall configurations
 - Payload encryption while in transit
@@ -33,12 +34,12 @@ Depending on the security classification you may be required to establish the fo
 - Basic or Digest authentication **SHOULD NOT**  be used.
 - The `Authorization: Bearer` header **MUST** be used for authentication/authorization e.g. using a JWT token.
 - A refresh token **SHOULD** be provided for extending expiry time of existing token without having to provide the credentials again. 
-- Always set a reasonable expiration date for tokens. JWT token lifetime **SHOULD NOT*** exceed 5 minutes.
+- Always set a reasonable expiration date for tokens. An OIDC access token lifetime **SHOULD NOT*** exceed 5 minutes.
 - JWT refresh tokens **SHOULD** be used when new JWT tokens are required outside of this lifetime. 
-- All APIs **MUST** have a policy that only allows access based on a valid API key.
-- API keys **MUST** be used for client authentication. Use of API keys should only be permitted when TLS is enabled. Rotation policy for API Key should be implemented as well.
-- API keys **SHOULD NOT** be included in the URL or query string. API keys **SHOULD** be included in the HTTP header as query strings may be saved by the client or server in unencrypted format by the browser or server application. 
-- CORS headers should only be used when necessary as it reduce overall security mechanisms built into web browsers by selectively relaxing cross-origin restrictions.
+- Client application identity **SHOULD** be established via a consistent mechanism. This may be via an API Key, or via a more robust mechanism such as an OAuth 2.0 asserted server identity. 
+- Use of API keys **SHOULD** only be permitted when TLS is enabled. Rotation policy for API Key/secret should be implemented where applicable.
+- API key and secret **SHOULD NOT** be included in the URL or query string. API keys **SHOULD** be included in the HTTP header as query strings may be saved by the client or server in unencrypted format by the browser or server application. 
+- CORS headers should only be used when necessary as it reduces the overall security mechanisms built into web browsers by selectively relaxing cross-origin restrictions.
 - A request from Domain A is considered cross-origin when it tries to make a request to an API that is hosted in Domain B.
   - For security reasons, browsers restrict cross-origin HTTP requests.
   - The Cross-Origin Resource Sharing standard works by adding new HTTP headers (i.e. Access-Control-Allow-Origin) that allow servers to describe the set of origins that are permitted to access the API
@@ -55,8 +56,6 @@ OAuth 2.0 can be used for authorisation. OAuth is an authorisation protocol that
 
 OpenID Connect extends the OAuth 2.0 protocol to receive information about the authenticated users such as their username and is useful when dealing with federated identity providers.
 
-The API Team provides an OAuth service that can be used by WoG APIs.  Alternatively, API Providers can link into Open ID Providers to delegate authorisation. This process can be facilitated by the WoG API Gateway.
-
 ## Abstraction
 
 There are multiple levels of abstraction and determining the level of abstraction is largely based on the number of consumers and the cost to change the system in response to an API change.
@@ -70,7 +69,7 @@ The varying levels of abstraction are as follows:
 | Abstraction Level | Description |
 | --- | --- |
 | `BASIC` | **Basic abstraction level**  - represents the minimum abstraction required for all APIs (including point-to-point):  - Use `JSON` as your default representation.  - Always provide a version number in the URL to facilitate change.  - Always use an API Key ID  - Little or no abstraction of the Data model and expose data as required
-| `INTERMEDIATE` | APIs which aim for re-use should consider Intermediate levels of abstraction:  **Payload abstraction**  - Represent resources from the consumer view point and be independent of the underlying system. NEVER directly expose the internal database table structure as is in your API.  - Error abstraction  – Handle source system errors and represent the errors in a consistent and informative. **System IDs abstraction**  – Avoid exposing and sharing internal system identifiers (such as a database ID) with your consumers. Use a candidate key or a secondary identifier.
+| `INTERMEDIATE` | APIs which aim for re-use should consider Intermediate levels of abstraction:  **Payload abstraction**  - Represent business resources as an abstraction of the domain model, independant of the implimentation, with a focus on client usability and self-service. NEVER directly expose the internal database table structure as is in your API.  - Error abstraction  – Handle source system errors and represent the errors in a consistent and informative. **System IDs abstraction**  – Avoid exposing and sharing internal system identifiers (such as a database ID) with your consumers. Use a candidate key or a secondary identifier.
 | `ADVANCED` | The highest level of abstraction and it encompasses all the other levels. - Use the API Gateway pattern to take care of cross-cutting concerns such as security, traffic management and analytics/monitoring.  - Use Linked Data hypermedia to promote "discoverability" of your API resources and relationships.   - Consider using HATEOAS to abstract allowable actions.
 
 ## Rate Limiting
@@ -124,8 +123,34 @@ It is preferable to use the security policy features available in the WoG API Ga
 | SSL | Listeners | SSL protocol (i.e. TLS 1.2 etc.) can be selected at listener level | Recommended |
 | Digital Certificate | Filter -\> Integrity | Various filters can be used for creating and validating the signature i.e. XML signature, JWT sign | Optional depends on business requirements (Recommended algorithm is RS256) |
 | JWT | Filter -\> Integrity | Message can be signed using JWT | Optional depends on business requirements |
-| API Keys | Filter -\> Authentication | Various filters can be used for authenticating the consumers i.e. API Keys etc. | Recommended |
+| API Keys | Filter -\> Authentication | Various filters can be used for identifying the consumer i.e. API Keys etc. | Recommended |
 | OAUTH | Filter -\> OAUTH | OAUTH can be used for authorizing the consumers | Optional as it depends on business requirements |
 | CORS | Listeners-\>Path | CORS can be restricted at path level | Recommended |
 
-The WoG API Team can provide advice on which API Gateway security policies should be applied.
+## Protective Marking
+
+Protective marking allows entities correctly assess the sensitivity or security classification of their information and adopt marking, handling, storage and disposal arrangements that guard against information compromise. Classification semantics may be unique to individual jurisdictions.
+
+An ‘x-protective-marking’ header should be used to apply data classification. The following rules apply to the use of the ‘x-protective-marking’ header:
+-	Transmission of any payload, request or response, containing data classified as having a high business impact level or above SHOULD be accompanied by an ‘x-protective-marking’ HTTP header.
+-	An ‘x-protective-marking’ HTTP header MUST be used to apply appropriate protective marking to Commonwealth information classified as having a high business impact level or above (classification of ‘PROTECTED’), and SHOULD be applied to Commonwealth information classified as having a medium business impact level.
+
+The content of the ‘x-protective-marking’ header should follow the following format, with additional optional semantics defined per jurisdiction:
+
+**Syntax**
+```
+X-Protective-Marking: VER=<ver>, NS=<namespace>, SEC=<securityClassification>
+```
+
+The first key-value pair will be the classification version, which is backward compatible and should change infrequently. The second key-value pair is the classification scheme namespace. The security classification marker (and further optional markings) follow.
+
+e.g.
+
+`    x-protective-marking: VER=2018.1, NS=gov.au, SEC=PROTECTED`
+
+
+For Commonwealth data the Australian Government (gov.au) namespace should be used, and the values (and case) of the header should align with the appropriate Security classification literals defined in the [Protective Security Policy Framework](https://www.protectivesecurity.gov.au/information/sensitive-classified-information/Pages/default.aspx), and conforming to the syntax prescribed in the [Annex B Email protective marking standard](https://www.protectivesecurity.gov.au/sites/default/files/2019-09/infosec08-sensitive-and-classified-information-email.pdf). 
+
+State or territory governments may use the Australian Government (gov.au) namespace and semantics, or they may use a their own namespace value (different from the Australian Government) and apply rules specific to their jurisdiction.
+
+Content (payload) classified as having a high business impact level or above MUST NOT be logged, unless over secure channels and to platforms approved for the retention of data to the appropriate classification. 

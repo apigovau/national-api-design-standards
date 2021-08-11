@@ -5,7 +5,7 @@ ______________________________________________________________________________
 
 Pagination is the process of returning a large set of results in chunks (or pages) to reduce the amount of information that is sent with each request.
 
-Pagination requires multiple query parameters to be provided, and further information about how to set this up is provided in the [pagination section](query-parameters.html#pagination) of this document.
+Pagination requires multiple query parameters to be provided, and further information about how to set this up is provided in the [pagination section](pagination.html#query-parameters) of this document.
 
 ## Filtering and Sorting
 
@@ -19,12 +19,12 @@ Below are the different techniques used when applying filtering and sorting:
 
 ### Output Selection
 
-Consumers can specify the attributes they wish to return in the [response payload](api-response.html#response-payload) by specifying the attributes in the [query parameters](pagination.html#query-parameters).
+Consumers can specify the fields they wish to return in the [response payload](api-response.html#response-payload) by specifying the fields in the [query parameters](pagination.html#query-parameters).
 
 Example that returns only the `first_name` and `last_name` fields in the response.
 
 ```
-?attributes=first_name,last_name
+?fields=first_name,last_name
 ```
 
 ### Simple Filtering
@@ -51,30 +51,28 @@ The equal (=) operator is the only supported operator when used in this techniqu
 
 ### Advanced Filtering
 
-There are situations where simple filtering does not meet the needs and a more comprehensive approach is required. Use the reserved keyword filters to define a more complex filtering logic.
+There are situations where simple filtering does not meet the needs and a more comprehensive approach is required. Use the reserved keyword 'filter' to define a more complex filtering logic.
 
-Multiple attributes with different operator and condition can be defined in the filter query parameter.
+Complex filter logic can be chained together in a single 'filter' value, using OData 4.0 query compliant query strings.
 
-The following operators are supported:
+The following operators should supported at a minimum:
 
-  1. \>= Greater than or equalled to
-  2. => Equalled to or greater than
-  3. \> Greater than
-  4. < Less than
-  5. <= Less than or equalled to
-  6. =< Equalled to or less than
-  7. = Equalled
-  8. != Not equalled
+  1. gt - Greater than
+  2. lt - Less than
+  3. ge - Greater than or equal to
+  5. le - Less than or equal to
+  7. eq - Equal
+  8. ne - Not equal
 
-The AND, OR conditions are supported.
+The 'and', 'or' conditions shoud be supported.
 
 Example:
 
 ```
-?filters=creation_date =\> 2001-09-20T13:00:00 and creation_date \<= 2001-09-21T13:00:00 and first_name like 'fred' and post_code=3000
+?filter=creation_date gt 2001-09-20T13:00:00 and creation_date lt 2001-09-21T13:00:00 and post_code eq 3000
 ```
 
-Return a collection of resources where the `creation_date` is between `2001-09-20 1pm` and `2001-09-21 1pm` and `first-name` like "fred" and `post_code` is 3000.
+Return a collection of resources where the `creation_date` is between `2001-09-20 1pm` and `2001-09-21 1pm` and `post_code` is 3000.
 
 ### Match Case Sensitivity
 
