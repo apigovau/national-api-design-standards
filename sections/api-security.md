@@ -127,6 +127,7 @@ It is preferable to use the security policy features available in the WoG API Ga
 | OAUTH | Filter -\> OAUTH | OAUTH can be used for authorizing the consumers | Optional as it depends on business requirements |
 | CORS | Listeners-\>Path | CORS can be restricted at path level | Recommended |
 
+
 ## Protective Marking
 
 Protective marking allows entities correctly assess the sensitivity or security classification of their information and adopt marking, handling, storage and disposal arrangements that guard against information compromise. Classification semantics may be unique to individual jurisdictions.
@@ -154,3 +155,4 @@ For Commonwealth data the Australian Government (gov.au) namespace should be use
 State or territory governments may use the Australian Government (gov.au) namespace and semantics, or they may use a their own namespace value (different from the Australian Government) and apply rules specific to their jurisdiction.
 
 Content (payload) classified as having a high business impact level or above MUST NOT be logged, unless over secure channels and to platforms approved for the retention of data to the appropriate classification. 
+
