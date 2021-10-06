@@ -23,7 +23,7 @@ Depending on the security classification you may be required to establish the fo
 
 - Mutual authentication between the consumer and the API Gateway
 - Mutual authentication between the API Gateway and the back-end API
-- PKI Mutual TLS OAuth Client Authentication
+- PKI Mutual TLS OAuth Client Authentication Method
 - IP Whitelisting of API Consumers using either API Gateway Policy or Firewall configurations
 - IP Whitelisting of API Publishers using either API Gateway Policy or Firewall configurations
 - Payload encryption while in transit
@@ -38,7 +38,7 @@ Depending on the security classification you may be required to establish the fo
 - JWT refresh tokens **SHOULD** be used when new JWT tokens are required outside of this lifetime. 
 - Client application identity **SHOULD** be established via a consistent mechanism. This may be via an API Key, or via a more robust mechanism such as an OAuth 2.0 asserted server identity. 
 - Use of API keys **SHOULD** only be permitted when TLS is enabled. Rotation policy for API Key/secret should be implemented where applicable.
-- API key and secret **SHOULD NOT** be included in the URL or query string. API keys **SHOULD** be included in the HTTP header as query strings may be saved by the client or server in unencrypted format by the browser or server application.
+- API key and secret **SHOULD NOT** be included in the URL or query string. API keys **SHOULD** be included in the HTTP header as query strings may be saved by the client or server in unencrypted format by the browser or server application. 
 - CORS headers should only be used when necessary as it reduces the overall security mechanisms built into web browsers by selectively relaxing cross-origin restrictions.
 - A request from Domain A is considered cross-origin when it tries to make a request to an API that is hosted in Domain B.
   - For security reasons, browsers restrict cross-origin HTTP requests.
@@ -126,3 +126,33 @@ It is preferable to use the security policy features available in the WoG API Ga
 | API Keys | Filter -\> Authentication | Various filters can be used for identifying the consumer i.e. API Keys etc. | Recommended |
 | OAUTH | Filter -\> OAUTH | OAUTH can be used for authorizing the consumers | Optional as it depends on business requirements |
 | CORS | Listeners-\>Path | CORS can be restricted at path level | Recommended |
+
+
+## Protective Marking
+
+Protective marking allows entities correctly assess the sensitivity or security classification of their information and adopt marking, handling, storage and disposal arrangements that guard against information compromise. Classification semantics may be unique to individual jurisdictions.
+
+An ‘x-protective-marking’ header should be used to apply data classification. The following rules apply to the use of the ‘x-protective-marking’ header:
+-	Transmission of any payload, request or response, containing data classified as having a high business impact level or above SHOULD be accompanied by an ‘x-protective-marking’ HTTP header.
+-	An ‘x-protective-marking’ HTTP header MUST be used to apply appropriate protective marking to Commonwealth information classified as having a high business impact level or above (classification of ‘PROTECTED’), and SHOULD be applied to Commonwealth information classified as having a medium business impact level.
+
+The content of the ‘x-protective-marking’ header should follow the following format, with additional optional semantics defined per jurisdiction:
+
+**Syntax**
+```
+X-Protective-Marking: VER=<ver>, NS=<namespace>, SEC=<securityClassification>
+```
+
+The first key-value pair will be the classification version, which is backward compatible and should change infrequently. The second key-value pair is the classification scheme namespace. The security classification marker (and further optional markings) follow.
+
+e.g.
+
+`    x-protective-marking: VER=2018.1, NS=gov.au, SEC=PROTECTED`
+
+
+For Commonwealth data the Australian Government (gov.au) namespace should be used, and the values (and case) of the header should align with the appropriate Security classification literals defined in the [Protective Security Policy Framework](https://www.protectivesecurity.gov.au/information/sensitive-classified-information/Pages/default.aspx), and conforming to the syntax prescribed in the [Annex B Email protective marking standard](https://www.protectivesecurity.gov.au/sites/default/files/2019-09/infosec08-sensitive-and-classified-information-email.pdf). 
+
+State or territory governments may use the Australian Government (gov.au) namespace and semantics, or they may use a their own namespace value (different from the Australian Government) and apply rules specific to their jurisdiction.
+
+Content (payload) classified as having a high business impact level or above MUST NOT be logged, unless over secure channels and to platforms approved for the retention of data to the appropriate classification. 
+
