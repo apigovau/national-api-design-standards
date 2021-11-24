@@ -10,14 +10,14 @@ Examples:
 // thisIsCamelCase
 
 {
-  "employeeId" : "AB1837"
+  "documentId" : "AB1837"
 }
 ```
 ```
 // this_is_snake_case
 
 {
-  "employee_id" : "AB1837"
+  "document_id" : "AB1837"
 }
 ```
 
@@ -38,7 +38,7 @@ URLs **MUST** follow the standard naming convention as described below:
 
 
 ```
-   https://gw.api.gov.au/namespace/project-name/v1/collection?fields=firstName,lastName
+   https://gw.api.gov.au/namespace/project-name/v1/collection?fields=startDate,endDate
    \___/   \___________/\___________________________________/\______________________________/
      |           |                        |                                  |
   scheme     authority                   path                              query
@@ -65,8 +65,8 @@ The following table provides a breakdown of how to construct the API URI.
 | Path \> API | The API name which is derived from the business domain. | e.g. `/namespace/project-name` <br />Any agency/department can specify the API name that they would like to expose their services on. |
 | Path \> Version | The version of the API that is desired to be accessed by the consumer. | e.g. `/v1` <br/> All APIs must specify a version that follow the versioning scheme as specified in 'versioning' below. |
 | Path \> Collection | The collection identifies a list of resources. The collection **MUST** be named using the **plural** representation of a noun. | e.g. As part of the workforce API - a resource could be a list of `employees`. |
-| Path \> Resource | The resource identifier which corresponds to an instance of the resource. | e.g. As part of the **project-name** API - if there was a specific employee with id E13454. These details can be retrieved using `GET` `/project-name/v1/employees/E13454` |
-| Query String \> Parameters | Query parameters **MUST** NOT be used to transport payload or actual data. <br/>The following query parameters **SHOULD** be supported by your API where they would be useful: <ul> <li>**fields** - specify or restrict the fields to be returned </li> <li> **filter** – conditions to restrict/filter the collection list </li> <li> **sort** – specify the sort requirement </li> <li> **page** – specify which pagination index to be return in a collection set</li> </ul> | e.g. `fields=first_name,last_name`  returns data element with only the `first_name` and `last_name` attributes <p> `filter=creation_date gt 2001-09-20T13:00:00 and creation_date le 2001-09-21T13:00:00 and and post_code eq 3000` - return a collection of resources where the creation date is greater than 2001-09-20 1pm and less than or equal to 2001-09-21 1pm and post_code is 3000.</p> <p> `sort=date_of_birth desc` - return a collection where the resources are sorted by date_of_birth in descending order. </p> <p> `page=10` – returns the 10th page index</p>
+| Path \> Resource | The resource identifier which corresponds to an instance of the resource. | e.g. As part of the **project-name** API - if there was a specific document with id E13454. These details can be retrieved using `GET` `/project-name/v1/documentId/E13454` |
+| Query String \> Parameters | Query parameters **MUST** NOT be used to transport payload or actual data. <br/>The following query parameters **SHOULD** be supported by your API where they would be useful: <ul> <li>**fields** - specify or restrict the fields to be returned </li> <li> **filter** – conditions to restrict/filter the collection list </li> <li> **sort** – specify the sort requirement </li> <li> **page** – specify which pagination index to be return in a collection set</li> </ul> | e.g. `fields=start_date,end_date`  returns data element with only the `start_date` and `end_date` attributes <p> `filter=creation_date gt 2001-09-20T13:00:00 and creation_date le 2001-09-21T13:00:00 and and post_code eq 3000` - return a collection of resources where the creation date is greater than 2001-09-20 1pm and less than or equal to 2001-09-21 1pm and post_code is 3000.</p> <p> `sort=car_bay desc` - return a collection where the resources are sorted by car_bay in descending order. </p> <p> `page=10` – returns the 10th page index</p>
 
 ### Resource Names
 
@@ -81,7 +81,7 @@ API Designers **MUST** follow these principles when creating a REST API:
 
 Good examples:
 
-- `/employees`
+- `/par-avion`
 - `/sea-cargo`
 - `/products`
 
@@ -217,28 +217,28 @@ Filtering is a query:<br />
   `GET` https://gw.api.gov.au/e09284/v1/employees?year=2011&sort=desc<br />
   `GET` https://gw.api.gov.au/e09284/v1/employees?section=economy&year=2011<br />
 A single employee in JSON format:<br />
-  `GET` https://gw.api.gov.au/e09284/v1/employees/1234<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employees/0d047d80-eb69-4665-9395-6df5a5e569a4<br />
 All locations this employee works in:<br />
-  `GET` https://gw.api.gov.au/e09284/v1/employees/1234/locations<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employees/0d047d80-eb69-4665-9395-6df5a5e569a4/locations<br />
 Specify optional fields in a comma separated list:<br />
-  `GET` https://gw.api.gov.au/e09284/v1/employees/1234?fields=job_title,start_date<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employees/0d047d80-eb69-4665-9395-6df5a5e569a4?fields=job_title,start_date<br />
 Add a new location to a particular employee:<br />
-  `POST` https://gw.api.gov.au/e09284/v1/employees/1234/locations<br />
+  `POST` https://gw.api.gov.au/e09284/v1/employees/0d047d80-eb69-4665-9395-6df5a5e569a4/locations<br />
 
 ### Bad URL examples
 
 Non-plural endpoint:
 
   `GET` https://gw.api.vic.gov.au/e09284/v1/employee<br />
-  `GET` https://gw.api.vic.gov.au/e09284/v1/employee/1234<br />
-  `GET` https://gw.api.vic.gov.au/e09284/v1/employee/1234/location<br />
+  `GET` https://gw.api.vic.gov.au/e09284/v1/employee/0d047d80-eb69-4665-9395-6df5a5e569a4<br />
+  `GET` https://gw.api.vic.gov.au/e09284/v1/employee/0d047d80-eb69-4665-9395-6df5a5e569a4/location<br />
 
   `GET` https://gw.api.gov.au/e09284/v1/employee<br />
-  `GET` https://gw.api.gov.au/e09284/v1/employee/1234<br />
-  `GET` https://gw.api.gov.au/e09284/v1/employee/1234/location<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee/0d047d80-eb69-4665-9395-6df5a5e569a4<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee/0d047d80-eb69-4665-9395-6df5a5e569a4/location<br />
 
 Verb in the URL:<br />
-  `POST` https://gw.api.gov.au/e09284/v1/employee/1234/create<br />
+  `POST` https://gw.api.gov.au/e09284/v1/employee/0d047d80-eb69-4665-9395-6df5a5e569a4/create<br />
 
 Filtering outside in the URL instead of the query string<br />
-  `GET` https://gw.api.gov.au/e09284/v1/employee/1234/desc<br />
+  `GET` https://gw.api.gov.au/e09284/v1/employee/0d047d80-eb69-4665-9395-6df5a5e569a4/desc<br />
