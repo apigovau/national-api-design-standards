@@ -21,10 +21,10 @@ Below are the different techniques used when applying filtering and sorting:
 
 Consumers can specify the fields they wish to return in the [response payload](api-response.html#response-payload) by specifying the fields in the [query parameters](pagination.html#query-parameters).
 
-Example that returns only the `first_name` and `last_name` fields in the response.
+Example that returns only the `start_date` and `end_date` fields in the response.
 
 ```
-?fields=first_name,last_name
+?fields=start_date,end_date
 ```
 
 ### Simple Filtering
@@ -34,18 +34,18 @@ Attributes can be used to filter a collection of resources.
 Example:
 
 ```
-?last_name=Citizen
+?department=corporate_services
 ```
 
-will filter out the collection of resources with the attribute `last_name` that matches `Citizen`.
+will filter out the collection of resources with the attribute `department` that matches `corporate_services`.
 
 Example:
 
 ```
-?last_name=Citizen&date_of_birth=1999-12-31
+?department=corporate_services&date_of_birth=1999-12-31
 ```
 
-will filter out the collection of resources with the attribute `last_name` that matches `Citizen` and `date_of_birth` that matches 31st of December, 1999.
+will filter out the collection of resources with the attribute `department` that matches `corporate_services` and `date_of_birth` that matches 31st of December, 1999.
 
 The equal (=) operator is the only supported operator when used in this technique. For other operators and conditions see the 'Advanced Filtering' technique.
 
