@@ -21,10 +21,12 @@ Below are the different techniques used when applying filtering and sorting:
 
 Consumers can specify the fields they wish to return in the [response payload](api-response.html#response-payload) by specifying the fields in the [query parameters](pagination.html#query-parameters).
 
-Example that returns only the `firstName` and `lastName` fields in the response.
+
+Example that returns only the `start_date` and `end_date` fields in the response.
 
 ```
-?fields=firstName,lastName
+?fields=start_date,end_date
+
 ```
 
 ### Simple Filtering
@@ -34,18 +36,21 @@ Attributes can be used to filter a collection of resources.
 Example:
 
 ```
-?lastName=Citizen
+
+?department=corporate_services
+
 ```
 
-will filter out the collection of resources with the attribute `lastName` that matches `Citizen`.
+will filter out the collection of resources with the attribute `department` that matches `corporate_services`.
+
 
 Example:
 
 ```
-?last_name=Citizen&date_of_birth=1999-12-31
+?department=corporate_services&date_of_birth=1999-12-31
 ```
 
-will filter out the collection of resources with the attribute `last_name` that matches `Citizen` and `date_of_birth` that matches 31st of December, 1999.
+will filter out the collection of resources with the attribute `department` that matches `corporate_services` and `date_of_birth` that matches 31st of December, 1999.
 
 The equal (=) operator is the only supported operator when used in this technique. For other operators and conditions see the 'Advanced Filtering' technique.
 
@@ -102,3 +107,32 @@ Examples:
 - `?sort=desc&sort-fields=name&sort_fields=last_modified`
 
 Both of these queries should sort first by name and then by last modified date.
+
+## Relocation of the Query parameters if Personally Identifiable Information (PII) is contained
+
+To conform to various privacy legislation, PII should not be included in the Query String where there is a risk that it may be stored in logs or on proxy servers. PII should be installed in headers, but reserved headers complicate this issue. As such, where PII is included within a query string, it is recommended that the string itself, or the PII component at least, be moved to a header where it will not be cached or logged, outside of the intended server that responds to it, with all information encrypted in transport by TLS. 
+
+As such, where a query string contains any personally identifiable information, it is recommended that either the entire query string, or the part containing the PII, be relocated to the headers in a suitable header.
+
+### The QUERY header
+
+RFC 6648 defines that the "X-" header prefix should be deprecated, and the list of established headers is maintained by IANA at: https://www.iana.org/assignments/message-headers/message-headers.xml
+
+As it is permitted to include query data within the headers under the RFC, and there are no headers beginning with the letter Q, the header "Query" shall be used within Australia when relocating query string content to a common header. This does not preclude deliberate use of other headers, for any reason, though any reuse of the "Query" header within Australia should be mindful of this fact. 
+
+URL encoding should be maintained within the field as per the Query standard. A "&" symbol should be assumed prior to concatenating with the original query string in the URI if it is not already present, unless there is no query string specified at all within the URI, in which case a "?" symbol should be assumed prior.
+
+There is no requirement to support this standard within an API endpoint. It is provided as an alternative standard in the event that an API must handle PII within the query.
+
+Example;
+URI
+- https://myAPI.example.gov.au/employees?search=all
+
+Headers:
+- Query: surname%3Dcitizen
+
+Would be the equivalent of;
+
+- https://myAPI.example.gov.au/employees?search=all&surname=citizen
+
+

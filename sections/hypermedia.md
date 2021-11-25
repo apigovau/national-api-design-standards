@@ -5,9 +5,13 @@ ______________________________________________________________________________
 
 Hypermedia links in APIs are links in the response payload that inform the consumers to what contents can be retrieved. Though simple in concept hypermedia links in APIs allow consumers to locate resource without the need to have an upfront understanding of the resource and its relationship.
 
-This is similar to the navigation of a web page.  The user is not expected to know the structure of the web page prior to visiting.  They can simply browse to the home page and the navigation lets them browse the site as required.
+This is similar to the navigation of a web page. The user is not expected to know the structure of the web page prior to visiting. They can simply browse to the home page and the navigation lets them browse the site as required.
 
-APIs that do not provide links are difficult to use and expect the consumer to refer to the documentation.
+APIs that do not provide links expect the consumer to refer to the documentation.
+
+The exclusion of Personally Identifiable Information (PII) in links provided back to a consumer should be a security / privacy consideration when referencing entities related to citizens, businesses, or any other entity considered to be non-discoverable, protected or sensitive in nature. The underlying reason for not including PII in links in particular is related to browsers and network devices being able to record and reference GET request information indefinitely.
+
+References to such entities should be non-enumerable i.e. knowing one reference shouldn't allow the simple discovery of another (e.g. entities referenced with id=123 allow the enumeration of references id=122, id=124 etc). The use of UUIDs can be considered a good replacement for sequential references e.g. `6df54d5e-3df7-11ec-96ad-6f2d87ff1821` is non-enumerable. A reference may be also constructed using [pseudonymization techniques](https://en.wikipedia.org/wiki/Pseudonymization), in the case of OIDC "Subjects" the [Pairwise Identifier Algorithm](https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg) may be used i.e. the identifier is non-enumerable and persistent only for the authenticated caller, however will not be resolvable for a different caller under a different authentication context. In some circumstances producing transient, short-lived, non-persistent or one-time-use references for entities may be appropriate (if explicitly understood and handled by the service & caller. Confirmation / reset links may be an appropriate example of this).
 
 Example:
 
@@ -26,7 +30,7 @@ GET /namespace/v1/employees
   "employees": [{
     "name" : "John Smith",
     "_links": [{
-        "href" : "/namespace/v1/employees/john-smith",
+        "href" : "/namespace/v1/employees/6df54d5e-3df7-11ec-96ad-6f2d87ff1821",
         "rel" : "self"
     }]
   }]
@@ -39,12 +43,12 @@ GET /namespace/v1/employees
 
 ```javascript
 {
-  "account_number":"12345",
+  "account_ref":"a2be47d4-3dfc-11ec-a765-db48afd2ce06",
   "balance": 100.00,
   "_links":[
-    {"rel": " **deposit**",  "href":"/accounts/12345/deposit"},
-    {"rel": " **withdraw**", "href":"/accounts/12345/withdraw"},
-    {"rel": " **transfer**", "href":"/accounts/12345/transfer"}
+    {"rel": " **deposit**",  "href":"/accounts/a2be47d4-3dfc-11ec-a765-db48afd2ce06/deposit"},
+    {"rel": " **withdraw**", "href":"/accounts/a2be47d4-3dfc-11ec-a765-db48afd2ce06/withdraw"},
+    {"rel": " **transfer**", "href":"/accounts/a2be47d4-3dfc-11ec-a765-db48afd2ce06/transfer"}
   ]
 }
 
@@ -54,11 +58,11 @@ But if the same account is overdrawn by 25 then the only allowed action is depos
 
 ```javascript
 {
-  "account_number":"12345",
+  "account_ref":"a2be47d4-3dfc-11ec-a765-db48afd2ce06",
   "balance": -25.00,
   "_links":[{
     "rel": "deposit",
-    "href":"/accounts/12345/deposit"
+    "href":"/accounts/a2be47d4-3dfc-11ec-a765-db48afd2ce06/deposit"
   }]
 }
 
@@ -103,28 +107,28 @@ The API creates a new user from the input and returns the following links to the
 ```json
 HTTP/1.1 201 CREATED
 Content-Type: application/json
-Location: https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI
+Location: https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179
 ...
 
 {
   "_links": [
       {
-          "href": "https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI",
+          "href": "https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
           "rel": "self",
           "method" : "GET"
       },
       {
-          "href": "https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI",
+          "href": "https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
           "rel": "delete",
           "method": "DELETE"
       },
       {
-          "href": "https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI",
+          "href": "https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
           "rel": "replace",
           "method": "PUT"
       },
       {
-          "href": "https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI",
+          "href": "https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
           "rel": "edit",
           "method": "PATCH"
       }
@@ -162,7 +166,7 @@ Content-Type: application/json
           ...
           "_links": [
               {
-                  "href": "https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI",
+                  "href": "https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
                   "rel": "self"
               }
           ]
@@ -173,7 +177,7 @@ Content-Type: application/json
           ...
           "_links": [
               {
-                  "href": "https://gw.api.gov.au/dept-xyz/v1/users/ALT-MDFSKFGIFJ86DSF",
+                  "href": "https://gw.api.gov.au/dept-xyz/v1/users/81d13dea-3e03-11ec-8c06-bff381749c44",
                   "rel": "self"
               }
           ]
@@ -188,7 +192,7 @@ The client MAY follow the `self` link of each user and figure out all the possib
 ### Request
 
 ```
-GET https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI
+GET https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179
 ```
 
 ### Response
@@ -203,22 +207,22 @@ Content-Type: application/json
     ...
     "_links": [
       {
-          "href": "https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI",
+          "href": "https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
           "rel": "self",
           "method" : "GET"
       },
       {
-          "href": "https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI",
+          "href": "https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
           "rel": "delete",
           "method": "DELETE"
       },
       {
-          "href": "https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI",
+          "href": "https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
           "rel": "replace",
           "method": "PUT"
       },
       {
-          "href": "https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI",
+          "href": "https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
           "rel": "edit",
           "method": "PATCH"
       }
@@ -231,7 +235,7 @@ To delete the user, the client retrieves the URI of the link relation type `dele
 ### Request
 
 ```
-DELETE https://gw.api.gov.au/dept-xyz/v1/users/ALT-JFWXHGUV7VI
+DELETE https://gw.api.gov.au/dept-xyz/v1/users/e7c9ad70-3dff-11ec-9d87-6fc27f396179
 
 ```
 
@@ -251,9 +255,9 @@ Links **MUST** be described using the [Link Description Object (LDO)](http://jso
 
 ### href
 
-- A value for the `href` property **MUST** be provided.  
+- A value for the `href` property **MUST** be provided.
 
-- The value of the `href` property **MUST** be a [URI template](https://tools.ietf.org/html/rfc6570) used to determine the target URI of the related resource. It **SHOULD** be resolved as a URI template per [RFC 6570](https://tools.ietf.org/html/rfc6570).  
+- The value of the `href` property **MUST** be a [URI template](https://tools.ietf.org/html/rfc6570) used to determine the target URI of the related resource. It **SHOULD** be resolved as a URI template per [RFC 6570](https://tools.ietf.org/html/rfc6570).
 
 - Use **ONLY** absolute URIs as a value for `href` property. Clients usually bookmark the absolute URI of a link relation type from the representation to make API requests later. Developers **MUST** use the URI Component Naming Conventions to construct absolute URIs. The value from the incoming `Host` header (e.g. gw.api.gov.au) MUST be used as the `host` field of the absolute URI.
 
@@ -283,7 +287,7 @@ The table below describes some of the commonly used link relation types. It also
 
 |Link Relation Type | Description|
 |---------|------------|
-|`self`  | Conveys an identifier for the link's context. Usually a link pointing to the resource itself.|
+|`self` | Conveys an identifier for the link's context. Usually a link pointing to the resource itself.|
 |`create` | Refers to a link that can be used to create a new resource.|
 |`edit` | Refers to editing (or partially updating) the representation identified by the link. Use this to represent a `PATCH` operation link.|
 |`delete` | Refers to deleting a resource identified by the link. Use this `Extended link relation type` to represent a `DELETE` operation link.|

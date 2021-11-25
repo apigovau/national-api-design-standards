@@ -3,7 +3,7 @@ ______________________________________________________________________________
 
 ## API
 
-In the context of this API Design Standard, an API (Application Programming Interface) is defined as a RESTful API.  
+In the context of this API Design Standard, an API (Application Programming Interface) is defined as a RESTful API.
 
 A RESTful API is a style of communication between systems where resources are defined by URI and its operations are defined by the use of HTTP methods.
 
@@ -25,14 +25,14 @@ Resource identifiers can be any of the following:
 
 Name | Example
 -- | --
-Numeric | /employees/12389
+Numeric | /leave-requests/12389
 String | /country-codes/australia
 GUID | /employees/0d047d80-eb69-4665-9395-6df5a5e569a4
 Date (Short form) | /dates/2018-09-17
 
 As long as the identifier is unique within your application it can be any string of characters or numbers.
 
-The resource identifier MUST be immutable. Primary keys or Personally Identifiable Information (PII) MUST NOT be exposed. When numeric IDs are used they MUST NOT be sequential e.g. it should not be trivial to guess the next ID. If this is difficult to achieve, then it is likely the API needs to be further abstracted from the underlying data source. 
+The resource identifier MUST be immutable. Primary keys or Personally Identifiable Information (PII) MUST NOT be exposed. When numeric IDs are used they MUST NOT be sequential e.g. it should not be trivial to guess the next ID. If this is difficult to achieve, then it is likely the API needs to be further abstracted from the underlying data source.
 
 ## Representation
 
@@ -41,7 +41,7 @@ A key concept in RESTful API design is the idea of the representation of a resou
 When you ask the system for employee information you will receive a representation of that employee e.g.
 
 ```
-HTTP 1.1 GET /employees/john-smith
+HTTP 1.1 GET /employees/0d047d80-eb69-4665-9395-6df5a5e569a4
 Accept: application/json
 
 200 OK
@@ -49,7 +49,8 @@ Content-Type: application/json
 
 {
   "name" : "John Smith",
-  "employee_id" : "123456",
+  "employee_id" : "0d047d80-eb69-4665-9395-6df5a5e569a4",
+  "employee_no" : "123456",
   "position" : "Manager",
   "on_leave" : false
 }
@@ -60,7 +61,7 @@ The intent is this representation can change over time as the system and data wi
 It is also possible to request an entirely different representation of this same resource if the system supports it.  For example, there may be a case where you require a PDF version of this employee and this could be facilitated with a request for a different representation through the `Accept` header:
 
 ```
-HTTP 1.1 GET /employees/john-smith
+HTTP 1.1 GET /employees/0d047d80-eb69-4665-9395-6df5a5e569a4
 Accept: application/pdf
 
 200 OK
@@ -87,11 +88,11 @@ An operation is defined by the use of:
 
 - an HTTP method; and
 - a resource path.
-  
+
 Examples:
 
 ```
 GET /employees
-GET /employees/6df5a5e569a4
-DELETE /employees/6df5a5e569a4
+GET /employees/0d047d80-eb69-4665-9395-6df5a5e569a4
+DELETE /employees/0d047d80-eb69-4665-9395-6df5a5e569a4
 ```
