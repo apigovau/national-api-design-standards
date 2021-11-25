@@ -10,7 +10,6 @@ This repository is being used to seek feedback from the working group, and also 
 
 For more information see the contact information below.
 
-<br /><br />
 ______________________________________________________________________________
 
 # Contact Information
@@ -25,8 +24,6 @@ ______________________________________________________________________________
 - Northern Territory - ictinfrastructure.ntg@nt.gov.au
 - Commonwealth of Australia - platforms@dta.gov.au 
 
-
-<br /><br />
 ______________________________________________________________________________
 
 # Contributing to this standard 
@@ -43,8 +40,6 @@ In addition, it would be appreciated if the following rules are adhered to when 
 
 - Please ensure you are aware of and compliant with any social media guidelines or internal processes for response set by your organisation before providing feedback.
 
-
-<br /><br />
 ______________________________________________________________________________
 
 # Building for Distribution
@@ -64,7 +59,6 @@ This will create a `target` directory with a combined.md and combined.pdf files 
 
 This concept is based on the work of the Consumer Data Right published by Data61. See https://github.com/ConsumerDataStandardsAustralia/standards for more information.
 
-<br /><br />
 ______________________________________________________________________________
 
 # Statement of Contribution
