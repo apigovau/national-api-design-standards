@@ -50,9 +50,8 @@ Content-Type: application/json
 {
   "name" : "John Smith",
   "employee_id" : "0d047d80-eb69-4665-9395-6df5a5e569a4",
-  "employee_no" : "123456",
   "position" : "Manager",
-  "on_leave" : false
+  "onLeave" : false
 }
 ```
 
