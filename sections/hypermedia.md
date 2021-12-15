@@ -5,9 +5,13 @@ ______________________________________________________________________________
 
 Hypermedia links in APIs are links in the response payload that inform the consumers to what contents can be retrieved. Though simple in concept hypermedia links in APIs allow consumers to locate resource without the need to have an upfront understanding of the resource and its relationship.
 
-This is similar to the navigation of a web page.  The user is not expected to know the structure of the web page prior to visiting.  They can simply browse to the home page and the navigation lets them browse the site as required.
+This is similar to the navigation of a web page. The user is not expected to know the structure of the web page prior to visiting. They can simply browse to the home page and the navigation lets them browse the site as required.
 
-APIs that do not provide links are difficult to use and expect the consumer to refer to the documentation.
+APIs that do not provide links expect the consumer to refer to the documentation.
+
+The exclusion of Personally Identifiable Information (PII) in links provided back to a consumer should be a security / privacy consideration when referencing entities related to citizens, businesses, or any other entity considered to be non-discoverable, protected or sensitive in nature. The underlying reason for not including PII in links in particular is related to browsers and network devices being able to record and reference GET request information indefinitely.
+
+References to such entities should be non-enumerable i.e. knowing one reference shouldn't allow the simple discovery of another (e.g. entities referenced with id=123 allow the enumeration of references id=122, id=124 etc). The use of UUIDs can be considered a good replacement for sequential references e.g. `6df54d5e-3df7-11ec-96ad-6f2d87ff1821` is non-enumerable. A reference may be also constructed using [pseudonymization techniques](https://en.wikipedia.org/wiki/Pseudonymization), in the case of OIDC "Subjects" the [Pairwise Identifier Algorithm](https://openid.net/specs/openid-connect-core-1_0.html#PairwiseAlg) may be used i.e. the identifier is non-enumerable and persistent only for the authenticated caller, however will not be resolvable for a different caller under a different authentication context. In some circumstances producing transient, short-lived, non-persistent or one-time-use references for entities may be appropriate (if explicitly understood and handled by the service & caller. Confirmation / reset links may be an appropriate example of this).
 
 ## HATEOAS
 
@@ -29,19 +33,20 @@ A straightforward “linkName”: “URIString” link notation MUST be used to 
 
 “link-name”: “/v1/resources/{resourceId}/sub-resources”
 
+
 The following example represents the content of an “account” resource 12345. Available deposit, withdraw and transfer actions are represented as HATEOAS links:
 
 ```javascript
 {
     "data": {
-        "accountId":"12345",
+        "accountId":"e7c9ad70-3dff-11ec-9d87-6fc27f396179",
         "clientId": 567890,
         "balance": 100.00
     }
     "links": {
-           "self": "/v1/accounts/12345",
-           "deposits": "/v1/account/12345/deposits",
-           "withdrawals": "/v1/account/12345/withdrawals",
+           "self": "/v1/accounts/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
+           "deposits": "/v1/account/e7c9ad70-3dff-11ec-9d87-6fc27f396179/deposits",
+           "withdrawals": "/v1/account/e7c9ad70-3dff-11ec-9d87-6fc27f396179/withdrawals",
     }
 }
 
@@ -52,13 +57,13 @@ But if the same account is overdrawn by 25 then the only allowed action is depos
 ```javascript
 {
     "data": {
-        "accountId":"12345",
+        "accountId":"e7c9ad70-3dff-11ec-9d87-6fc27f396179",
         "clientId": 567890,
         "balance": 100.00
     }
     "links": {
-           "self": "/v1/accounts/12345",
-           "deposits": "/v1/account/12345/deposits",
+           "self": "/v1/accounts/e7c9ad70-3dff-11ec-9d87-6fc27f396179",
+           "deposits": "/v1/account/e7c9ad70-3dff-11ec-9d87-6fc27f396179/deposits",
     }
 }
 
@@ -88,6 +93,7 @@ The table below describes some of the commonly used link relation types. It also
 
 |Link Relation Type | Description|
 |---------|------------|
+
 |`self`  | Conveys an identifier for the link's context. Usually a link pointing to the resource itself.|
 |`first` | Refers to the first page of the result list.|
 |`last` | Refers to the last page of the result list provided `total_required` is specified as a query parameter.|
