@@ -1,0 +1,12 @@
+{% include header.html %}
+{% include left.html %}
+
+ <!-- assign section = page.url|split:'/' | last |replace: "/", "" |strip  -->
+
+ <!-- capture markdown  include_relative sections/{{section |default: "header" }}.md  endcapture  -->
+ {% capture markdown %}{% include_relative sections/header.md %}{% endcapture %}
+<div class="col-sm-8 api_data">
+{{ markdown | markdownify }}
+</div>
+
+{% include footer.html %}

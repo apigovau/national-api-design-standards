@@ -1,1 +1,15 @@
-theme: jekyll-theme-slate
+title: api.gov.au
+description: Making it easier to discover and implement APIs offered by the Australian state, territory and federal government.
+
+# ** Make sure you change these when deploying to your repo **
+#baseurl: '/national-api-design-standards' # the subpath of your site, e.g. /blog
+#url: 'https://apigovau.github.io' # the base hostname & protocol for your site, e.g. http://example.com or http://[yourusername].github.io
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-tsc
+# exclude: ['node_modules', 'gulpfile.js', 'package.json']
+
+timezone: Australia/Canberra
+playbook: playbook.lecklogic.com.au 

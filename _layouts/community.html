@@ -1,0 +1,35 @@
+{% include header.html %}
+
+<div class="tier tier--even community__nopad">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="intro">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-md-push-6">
+                            <div class="intro__img">
+                                <img alt="robots working together illustration"
+                                    class="au-responsive-media-img" 
+                                    src="{{ '/assets/img/community.png' | relative_url}}"
+                                />
+                            </div>
+                        </div>
+                        <div class="intro__text col-sm-12 col-md-5 col-md-pull-6">
+                            <div class="content">
+                                {{ content }}
+                            </div>
+                            <p class="intro__button">
+                                <a class="au-btn au-btn--secondary"
+                                    href="https://community.digital.gov.au/c/api" target="_blank">Get
+                                    started
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include footer.html %}

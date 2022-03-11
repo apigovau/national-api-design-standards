@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+  <title>{{ page.title | default: site.title }}</title>
+  
+  <meta
+    content="Making it easier to discover and implement APIs offered by the Australian state, territory and federal government."
+    name="description" />
+
+  <link href="{{ '/assets/img/favicon-196x196.png' | relative_url}}" rel="icon" sizes="196x196" type="image/png" />
+  <link href="{{ '/assets/img/favicon-32x32.png' | relative_url}}" rel="icon" sizes="32x32" type="image/png" />
+  <link href="{{ '/assets/img/favicon-16x16.png' | relative_url}}" rel="icon" sizes="16x16" type="image/png" />
+  <link href="{{ '/assets/img/favicon-128.png' | relative_url}}" rel="icon" sizes="128x128" type="image/png" />
+
+  <link href="{{ '/assets/css/designsystem.css' | relative_url}}" rel="stylesheet">
+  <link href="{{ '/assets/css/custom.css?v=2' | relative_url}}" rel="stylesheet">
+
+</head>
+
+<body{% if page.id %} id="{{ page.id }}" {% endif %} class="{{ page.layout }} au-body au-grid">
+  <section class="phase-banner">
+    <div class="wrapper au-grid container container-fluid">
+        This is in <a class="dss_stage_link" href="https://www.dta.gov.au/standard/service-design-and-delivery-process/">beta</a>. If you find something wrong, <a class="dss_stage_link" href="https://github.com/apigovau/api-gov-au/issues/new">let us know</a>
+    </div>
+</section>
+
+  <!-- .full-width here gets closed on support-page.html and home.html layouts -->
+  <header class="au-grid au-header au-header--hero au-header--dark hero_header" role="banner">
+
+    <div class="container main_header">
+      <h1 class="au-header-heading">
+          <img alt="Australian Government logo" class="hero_logo au-responsive-media-img" src="{{ '/assets/img/header-logo-agov.png' | relative_url}}">
+          <a href="{{ '/' | relative_url}}">api.gov.au</a>
+          <span class="badge">BETA</span>
+      </h1>
+    </div>
+    <nav aria-label="main navigation" class="au-main-nav">
+      <input id="menu" type="checkbox">
+      <label for="menu">☰ Menu</label>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="au-main-nav__content" id="main-nav-default">
+              <div class="au-main-nav__menu">
+                <div class="au-main-nav__menu-inner">
+                  <div class="au-main-nav__focus-trap-top"></div>
+                  <ul class="au-link-list">
+                    <li class="{% if page.layout == 'about' %}active{% endif %}"><a href="{{ '/about' | relative_url}}">About Us</a></li>
+                    <!-- <li><a href="{{ '/apis' | relative_url}}">API Catalogue</a></li>
+                    <li><a href="{{ '/definitions' | relative_url}}">Data Definitions</a></li> -->
+                    <li class="{% if page.layout == 'page' %}active{% elsif page.layout == 'index' %}active{% endif %}"><a href="{{ '/' | relative_url}}">Standards</a></li>
+                    <li><a href="https://{{ site.playbook}}">Playbook</a></li>
+                    <li class="{% if page.layout == 'community' %}active{% endif %}"><a href="{{ '/community' | relative_url}}">Community</a></li>
+                    <li class="githubLink"><a href="https://github.com/apigovau/api-gov-au" target="_blank">Github</a>
+                    </li>
+                  </ul>
+                  <div class="au-main-nav__focus-trap-bottom"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+  </header>
+  <main class="container">
+    
