@@ -51,8 +51,8 @@
                   <div class="au-main-nav__focus-trap-top"></div>
                   <ul class="au-link-list">
                     <li class="{% if page.layout == 'about' %}active{% endif %}"><a href="{{ '/about' | relative_url}}">About Us</a></li>
-                    <!-- <li><a href="{{ '/apis' | relative_url}}">API Catalogue</a></li>
-                    <li><a href="{{ '/definitions' | relative_url}}">Data Definitions</a></li> -->
+                    <li><a href="{{ '/apis' | relative_url}}">API Catalogue</a></li>
+                   <!-- <li><a href="{{ '/definitions' | relative_url}}">Data Definitions</a></li> -->
                     <li class="{% if page.layout == 'page' %}active{% elsif page.layout == 'index' %}active{% endif %}"><a href="{{ '/' | relative_url}}">Standards</a></li>
                     <li><a href="https://{{ site.playbook}}">Playbook</a></li>
                     <li class="{% if page.layout == 'community' %}active{% endif %}"><a href="{{ '/community' | relative_url}}">Community</a></li>
