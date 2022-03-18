@@ -1,6 +1,6 @@
 ---
 layout: about
-title: About
+title: api.gov.au/About
 permalink: /about
 ---
 # About API.gov.au
